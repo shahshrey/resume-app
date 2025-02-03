@@ -35,7 +35,11 @@ html {
 
 /* Gradient background utility */
 .bg-gradient-radial {
-  background-image: radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+  background-image: radial-gradient(
+    circle at center,
+    var(--tw-gradient-from) 0%,
+    var(--tw-gradient-to) 70%
+  );
 }
 
 /* Grid layout styles */
@@ -71,4 +75,4 @@ html {
   height: auto;
   display: flex;
   align-items: center;
-} 
+}

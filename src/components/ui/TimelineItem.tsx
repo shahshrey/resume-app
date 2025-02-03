@@ -10,11 +10,17 @@ interface TimelineItemProps {
   technologies: string[];
 }
 
-export const TimelineItem = ({ title, company, duration, description, technologies }: TimelineItemProps) => {
+export const TimelineItem = ({
+  title,
+  company,
+  duration,
+  description,
+  technologies,
+}: TimelineItemProps) => {
   return (
-    <div className="relative pl-8 pb-12 border-l border-primary-main/20 last:pb-0">
-      <div className="absolute w-4 h-4 bg-gradient-to-r from-primary-main to-primary-dark rounded-full -left-2 mt-1.5 shadow-glow" />
-      
+    <div className="relative border-l border-primary-main/20 pb-12 pl-8 last:pb-0">
+      <div className="shadow-glow absolute -left-2 mt-1.5 h-4 w-4 rounded-full bg-gradient-to-r from-primary-main to-primary-dark" />
+
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -24,20 +30,20 @@ export const TimelineItem = ({ title, company, duration, description, technologi
       >
         <div>
           <h3 className="text-2xl font-semibold text-text-primary">{title}</h3>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-text-secondary mt-1">
+          <div className="mt-1 flex flex-col gap-2 text-text-secondary sm:flex-row sm:items-center sm:gap-3">
             <span className="font-medium text-primary-light">{company}</span>
-            <span className="hidden sm:block text-text-disabled">•</span>
+            <span className="hidden text-text-disabled sm:block">•</span>
             <span className="text-sm">{duration}</span>
           </div>
         </div>
 
-        <p className="text-text-secondary leading-relaxed">{description}</p>
+        <p className="leading-relaxed text-text-secondary">{description}</p>
 
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-sm rounded-full bg-background-elevated text-primary-light border border-primary-main/20 hover:border-primary-main/50 transition-colors"
+              className="rounded-full border border-primary-main/20 bg-background-elevated px-3 py-1 text-sm text-primary-light transition-colors hover:border-primary-main/50"
             >
               {tech}
             </span>
@@ -46,4 +52,4 @@ export const TimelineItem = ({ title, company, duration, description, technologi
       </motion.div>
     </div>
   );
-}; 
+};
