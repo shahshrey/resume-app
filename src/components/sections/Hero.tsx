@@ -1,8 +1,6 @@
 'use client';
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
-import { AnimatedSection } from '../ui/AnimatedSection';
-import { theme } from '@/lib/theme';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import { FaGithub, FaLinkedin, FaTwitter, FaCalendar } from 'react-icons/fa';

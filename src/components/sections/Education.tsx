@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
 import { cn } from '@/lib/utils';
-import { theme } from '@/lib/theme';
 import { Tooltip } from '../ui/Tooltip';
+import Image from 'next/image';
 
 interface EducationItemProps {
   degree: string;
@@ -57,11 +57,15 @@ const EducationItem: FC<EducationItemProps> = ({
       >
         <div className="flex items-start justify-between gap-4">
           {logo && (
-            <img
-              src={logo}
-              alt={`${institution} logo`}
-              className="h-12 w-12 rounded-md object-contain"
-            />
+            <div className="relative h-12 w-12">
+              <Image
+                src={logo}
+                alt={`${institution} logo`}
+                fill
+                className="rounded-md object-contain"
+                sizes="48px"
+              />
+            </div>
           )}
           <div className="flex-1">
             <h3 className="text-xl font-semibold text-text-primary transition-colors group-hover:text-primary-main">
