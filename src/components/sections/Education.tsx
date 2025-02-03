@@ -24,18 +24,18 @@ const EducationItem: FC<EducationItemProps> = ({
   major,
   description,
   achievements,
-  logo
+  logo,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <motion.div
       className={cn(
-        "relative pl-8 mb-12 group",
-        "before:absolute before:left-0 before:top-2 before:w-4 before:h-4",
-        "before:bg-background before:border-4 before:border-primary-main before:rounded-full",
-        "after:absolute after:left-[7px] after:top-6 after:bottom-0 after:w-0.5",
-        "after:bg-primary-main/30 last:after:hidden"
+        'group relative mb-12 pl-8',
+        'before:absolute before:left-0 before:top-2 before:h-4 before:w-4',
+        'before:bg-background before:rounded-full before:border-4 before:border-primary-main',
+        'after:absolute after:bottom-0 after:left-[7px] after:top-6 after:w-0.5',
+        'after:bg-primary-main/30 last:after:hidden'
       )}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -44,12 +44,12 @@ const EducationItem: FC<EducationItemProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div 
+      <div
         className={cn(
-          "p-6 rounded-lg transition-all duration-300",
-          "bg-background-paper/50 hover:bg-background-paper",
-          "border border-transparent hover:border-primary-main",
-          "shadow-sm hover:shadow-md"
+          'rounded-lg p-6 transition-all duration-300',
+          'bg-background-paper/50 hover:bg-background-paper',
+          'border border-transparent hover:border-primary-main',
+          'shadow-sm hover:shadow-md'
         )}
         role="article"
         tabIndex={0}
@@ -57,22 +57,18 @@ const EducationItem: FC<EducationItemProps> = ({
       >
         <div className="flex items-start justify-between gap-4">
           {logo && (
-            <img 
-              src={logo} 
+            <img
+              src={logo}
               alt={`${institution} logo`}
-              className="w-12 h-12 object-contain rounded-md"
+              className="h-12 w-12 rounded-md object-contain"
             />
           )}
           <div className="flex-1">
-            <h3 className="text-xl font-semibold text-text-primary group-hover:text-primary-main transition-colors">
+            <h3 className="text-xl font-semibold text-text-primary transition-colors group-hover:text-primary-main">
               {degree}
             </h3>
-            {major && (
-              <p className="text-text-secondary mt-1 font-medium">
-                {major}
-              </p>
-            )}
-            <div className="flex flex-wrap gap-2 items-center text-text-secondary mt-2">
+            {major && <p className="mt-1 font-medium text-text-secondary">{major}</p>}
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-text-secondary">
               <span className="font-medium">{institution}</span>
               <span className="text-text-disabled">•</span>
               <motion.span
@@ -82,17 +78,13 @@ const EducationItem: FC<EducationItemProps> = ({
                 {period}
               </motion.span>
             </div>
-            
-            {description && (
-              <p className="mt-3 text-text-secondary">
-                {description}
-              </p>
-            )}
-            
+
+            {description && <p className="mt-3 text-text-secondary">{description}</p>}
+
             {achievements && achievements.length > 0 && (
               <div className="mt-4">
                 <Tooltip content="Notable Achievements">
-                  <ul className="list-disc list-inside space-y-1 text-text-secondary">
+                  <ul className="list-inside list-disc space-y-1 text-text-secondary">
                     {achievements.map((achievement, index) => (
                       <li key={index} className="text-sm">
                         {achievement}
@@ -112,40 +104,39 @@ const EducationItem: FC<EducationItemProps> = ({
 const Education: FC = () => {
   const education = [
     {
-      degree: "Master of Engineering",
-      institution: "University of Windsor",
-      period: "May 2016 - Aug 2017",
-      major: "Electrical Engineering",
-      description: "Advanced studies in electrical engineering with emphasis on industrial automation and control systems.",
+      degree: 'Master of Engineering',
+      institution: 'University of Windsor',
+      period: 'May 2016 - Aug 2017',
+      major: 'Electrical Engineering',
+      description:
+        'Advanced studies in electrical engineering with emphasis on industrial automation and control systems.',
       achievements: [
-        "Specialized in industrial automation and control systems",
-        "Research in electrical systems optimization",
-        "Advanced coursework in power systems and electronics"
+        'Specialized in industrial automation and control systems',
+        'Research in electrical systems optimization',
+        'Advanced coursework in power systems and electronics',
       ],
-      logo: "/images/education/windsor.png"
+      logo: '/images/education/windsor.png',
     },
     {
-      degree: "Bachelor of Engineering",
-      institution: "Gujarat Technological University",
-      period: "Aug 2011 - May 2015",
-      major: "Electrical Engineering",
-      description: "Comprehensive foundation in electrical engineering with a minor in computer engineering, combining hardware and software expertise.",
+      degree: 'Bachelor of Engineering',
+      institution: 'Gujarat Technological University',
+      period: 'Aug 2011 - May 2015',
+      major: 'Electrical Engineering',
+      description:
+        'Comprehensive foundation in electrical engineering with a minor in computer engineering, combining hardware and software expertise.',
       achievements: [
-        "First Class with Distinction",
-        "Minor in Computer Engineering",
-        "Strong foundation in both electrical systems and programming"
+        'First Class with Distinction',
+        'Minor in Computer Engineering',
+        'Strong foundation in both electrical systems and programming',
       ],
-      logo: "/images/education/gtu.png"
-    }
+      logo: '/images/education/gtu.png',
+    },
   ];
 
   return (
     <AnimatedSection className="py-12" delay={0.3}>
-      <SectionHeader 
-        title="Education" 
-        subtitle="Academic qualifications and achievements"
-      />
-      
+      <SectionHeader title="Education" subtitle="Academic qualifications and achievements" />
+
       <div className="mt-12">
         {education.map((edu, index) => (
           <EducationItem key={index} {...edu} />
@@ -155,4 +146,4 @@ const Education: FC = () => {
   );
 };
 
-export default Education; 
+export default Education;

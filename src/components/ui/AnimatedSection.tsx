@@ -16,11 +16,11 @@ export const AnimatedSection = ({ children, className = '', delay = 0 }: Animate
       transition={{
         duration: 0.5,
         delay,
-        ease: 'easeOut'
+        ease: 'easeOut',
       }}
       className={className}
     >
       {children}
     </motion.section>
   );
-}; 
+};
