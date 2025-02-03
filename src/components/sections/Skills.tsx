@@ -43,7 +43,7 @@ const SkillBadge: FC<SkillProps> = ({ name, proficiency, icon, yearsOfExperience
     aria-label={`${name} - ${proficiency}% proficiency`}
   >
     <Tooltip content={`${yearsOfExperience} ${yearsOfExperience === 1 ? 'year' : 'years'} of experience`}>
-      <div className="flex items-center gap-3 p-3 bg-background-paper/50 backdrop-blur-sm rounded-lg border border-primary-main/10 hover:border-primary-main/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary-main/5">
+      <div className="flex items-center gap-3 p-3 bg-background-paper/50 backdrop-blur-sm rounded-lg border border-transparent hover:border-primary-main transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary-main/5">
         <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-main/5 flex items-center justify-center text-xl">
           {icon}
         </div>
@@ -114,35 +114,52 @@ const Skills: FC = () => {
   const [sortBy, setSortBy] = useState<SortType>('proficiency');
 
   const skillsData = [
-    { category: "AI & ML", name: "LangChain", proficiency: 90, icon: "🔗", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "AI & ML", name: "LangGraph", proficiency: 85, icon: "📊", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "AI & ML", name: "litellm", proficiency: 85, icon: "🤖", yearsOfExperience: 1, type: 'Intermediate' as const },
+    // AI & ML
     { category: "AI & ML", name: "RAG Systems", proficiency: 95, icon: "📚", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "AI & ML", name: "Knowledge Graphs", proficiency: 80, icon: "🕸️", yearsOfExperience: 2, type: 'Intermediate' as const },
+    { category: "AI & ML", name: "LangChain", proficiency: 90, icon: "🔗", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "AI & ML", name: "LangGraph", proficiency: 85, icon: "📊", yearsOfExperience: 1, type: 'Expert' as const },
+    { category: "AI & ML", name: "Multi-Agent Systems", proficiency: 90, icon: "🤖", yearsOfExperience: 1, type: 'Expert' as const },
     { category: "AI & ML", name: "Prompt Engineering", proficiency: 90, icon: "✨", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "AI & ML", name: "LLM Fine-tuning", proficiency: 85, icon: "🎯", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "Languages", name: "Python", proficiency: 95, icon: "🐍", yearsOfExperience: 3, type: 'Expert' as const },
-    { category: "Languages", name: "JavaScript", proficiency: 90, icon: "🌐", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "Languages", name: "TypeScript", proficiency: 85, icon: "🌐", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "Languages", name: "Java", proficiency: 80, icon: "☕️", yearsOfExperience: 2, type: 'Intermediate' as const },
-    { category: "DevOps", name: "Docker", proficiency: 85, icon: "🐳", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "DevOps", name: "Kubernetes", proficiency: 80, icon: "🚀", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "DevOps", name: "GitHub Actions", proficiency: 90, icon: "⚡️", yearsOfExperience: 1, type: 'Expert' as const },
-    { category: "DevOps", name: "AWS", proficiency: 85, icon: "☁️", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "Databases", name: "SQL Server", proficiency: 90, icon: "🗄", yearsOfExperience: 2, type: 'Expert' as const },
-    { category: "Databases", name: "MongoDB", proficiency: 85, icon: "🍃", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "Databases", name: "Neo4j", proficiency: 80, icon: "🕸️", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "Testing", name: "Playwright", proficiency: 90, icon: "🎭", yearsOfExperience: 1, type: 'Expert' as const },
-    { category: "Testing", name: "Cypress", proficiency: 85, icon: "🔄", yearsOfExperience: 1, type: 'Intermediate' as const },
-    { category: "Testing", name: "Postman", proficiency: 90, icon: "📬", yearsOfExperience: 1, type: 'Expert' as const }
+    { category: "AI & ML", name: "LLM Fine-tuning", proficiency: 85, icon: "🎯", yearsOfExperience: 1, type: 'Expert' as const },
+    { category: "AI & ML", name: "Knowledge Graphs", proficiency: 85, icon: "🕸️", yearsOfExperience: 2, type: 'Expert' as const },
+    
+    // Languages
+    { category: "Languages", name: "Python", proficiency: 95, icon: "🐍", yearsOfExperience: 4, type: 'Expert' as const },
+    { category: "Languages", name: "JavaScript", proficiency: 90, icon: "🌐", yearsOfExperience: 3, type: 'Expert' as const },
+    { category: "Languages", name: "TypeScript", proficiency: 85, icon: "📘", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "Languages", name: "Java", proficiency: 85, icon: "☕️", yearsOfExperience: 3, type: 'Expert' as const },
+    
+    // DevOps & Cloud
+    { category: "DevOps & Cloud", name: "Azure DevOps", proficiency: 90, icon: "☁️", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "DevOps & Cloud", name: "GitHub Actions", proficiency: 90, icon: "⚡️", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "DevOps & Cloud", name: "Docker", proficiency: 85, icon: "🐳", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "DevOps & Cloud", name: "CI/CD", proficiency: 90, icon: "🔄", yearsOfExperience: 3, type: 'Expert' as const },
+    
+    // Testing & QA
+    { category: "Testing & QA", name: "Test Automation", proficiency: 95, icon: "🔧", yearsOfExperience: 5, type: 'Expert' as const },
+    { category: "Testing & QA", name: "Playwright", proficiency: 90, icon: "🎭", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "Testing & QA", name: "Cypress", proficiency: 85, icon: "🎯", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "Testing & QA", name: "API Testing", proficiency: 90, icon: "🔌", yearsOfExperience: 4, type: 'Expert' as const },
+    
+    // Databases
+    { category: "Databases", name: "Neo4j", proficiency: 85, icon: "🕸️", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "Databases", name: "MongoDB", proficiency: 85, icon: "🍃", yearsOfExperience: 2, type: 'Expert' as const },
+    { category: "Databases", name: "SQL", proficiency: 90, icon: "📊", yearsOfExperience: 3, type: 'Expert' as const },
+    
+    // Languages (Human)
+    { category: "Natural Languages", name: "English", proficiency: 100, icon: "🇬🇧", yearsOfExperience: 0, type: 'Expert' as const },
+    { category: "Natural Languages", name: "Gujarati", proficiency: 100, icon: "🇮🇳", yearsOfExperience: 0, type: 'Expert' as const },
+    { category: "Natural Languages", name: "Hindi", proficiency: 100, icon: "🇮🇳", yearsOfExperience: 0, type: 'Expert' as const },
+    { category: "Natural Languages", name: "French", proficiency: 60, icon: "🇫🇷", yearsOfExperience: 0, type: 'Beginner' as const }
   ];
 
   const categoryIcons = {
     "AI & ML": "🤖",
     "Languages": "💻",
-    "DevOps": "🛠",
+    "DevOps & Cloud": "☁️",
     "Databases": "🗄",
-    "Testing": "🧪"
+    "Testing & QA": "🧪",
+    "Natural Languages": "🌍"
   };
 
   const groupedAndFilteredSkills = useMemo(() => {

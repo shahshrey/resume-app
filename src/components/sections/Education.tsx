@@ -48,7 +48,7 @@ const EducationItem: FC<EducationItemProps> = ({
         className={cn(
           "p-6 rounded-lg transition-all duration-300",
           "bg-background-paper/50 hover:bg-background-paper",
-          "border border-border-main hover:border-primary-main",
+          "border border-transparent hover:border-primary-main",
           "shadow-sm hover:shadow-md"
         )}
         role="article"

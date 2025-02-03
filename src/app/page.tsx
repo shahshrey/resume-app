@@ -13,6 +13,9 @@ const Education = dynamic(() => import('@/components/sections/Education'), {
 const Skills = dynamic(() => import('@/components/sections/Skills'), {
   ssr: true
 });
+const Certifications = dynamic(() => import('@/components/sections/Certifications'), {
+  ssr: true
+});
 const Contact = dynamic(() => import('@/components/sections/Contact'), {
   ssr: true
 });
@@ -25,6 +28,7 @@ export default function Home() {
         <Experience />
         <Education />
         <Skills />
+        <Certifications />
         <Contact />
       </div>
     </main>

@@ -64,8 +64,8 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
       <div 
         className={cn(
           "relative p-6 rounded-lg transition-all duration-300",
-          "bg-background-paper/50 backdrop-blur-sm border border-primary-main/10",
-          "hover:border-primary-main/30 hover:bg-background-paper/80",
+          "bg-background-paper/50 backdrop-blur-sm",
+          "border border-transparent hover:border-primary-main",
           "group cursor-pointer",
           isHovered && "shadow-lg shadow-primary-main/5 scale-[1.02]"
         )}
@@ -169,65 +169,72 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
 const Experience: FC = () => {
   const experiences = [
     {
-      title: "AI Software Engineer",
+      title: "Software Engineer | AI",
       company: "Vivun",
-      period: "May 2023 – Present",
-      environment: "Agile, Jira, Playwright, Axios, Mocha, Chai, Postman, GRPC, Node.js, TypeScript, Splunk, GraphQL, LangChain, LangGraph, Neo4j, LLMs",
+      period: "June 2023 – Present",
+      environment: "LangChain, LangGraph, RAG Systems, Multi-Agent Systems, Neo4j, LLMs, Prompt Engineering, FastAPI, LangServe, Gradio, Streamlit, MLflow, Hugging Face",
       responsibilities: [
         "Led development of multi-agent applications using LangChain and LangGraph frameworks",
-        "Collaborated on RAG solutions including Hybrid RAG, GraphRAG and Agentic RAG",
-        "Developed CI/CD pipelines for testing and deployment of agents",
+        "Built innovative systems using advanced AI frameworks and tools",
+        "Implemented various RAG architectures including Hybrid RAG, GraphRAG and Agentic RAG",
+        "Developed CI/CD pipelines for testing and deployment of AI agents",
         "Integrated knowledge graphs using Neo4j for improved data processing",
         "Fine-tuned and quantized LLMs for enhanced local performance",
         "Led AI training sessions and created POCs for latest LLM advancements",
         "Developed local AI tools fine-tuned for specific use cases",
         "Optimized inference workflows for low-latency and high-throughput performance",
-        "Tested chatbots with different prompt injections and jail breaking techniques"
+        "Engineered prompts and deployed through FastAPI and LangServe",
+        "Created user-friendly interfaces using Gradio and Streamlit"
       ],
       logoUrl: "/images/companies/vivun.jpg",
       isActive: true
     },
     {
-      title: "Lead SDET",
+      title: "Senior Software Development Engineer In Test",
       company: "Priceline",
-      period: "June 2021 – May 2023",
-      environment: "Agile, Mocha, Chai, Postman, WebDriverIO, Axios, GRPC, Jira, Node.js, SQL, JavaScript, Splunk, GraphQL, Spring Boot, Appium, Saucelabs",
+      period: "May 2021 – June 2023",
+      environment: "WebDriverIO, Appium, Mocha, Chai, Saucelabs, GitHub Actions, Spring Boot, Zephyr Scale, Splunk, JavaScript, SQL, GraphQL",
       responsibilities: [
-        "Led end-to-end test automation framework development using wdio and Appium",
-        "Implemented GitHub actions for automating release processes",
-        "Developed backend for core products using Spring Boot",
-        "Created algorithms for auto-generating tests from historical data",
-        "Integrated test automation with Zephyr Scale for traceability",
-        "Implemented Splunk dashboards for real-time monitoring",
+        "Led development of an end-to-end test automation framework using wdio, Appium, Mocha and Saucelabs for web, mobile and API testing",
+        "Implemented continuous integration and delivery pipelines using GitHub Actions, enabling multiple releases per day",
+        "Automated the entire release process including PR creation, merging, and confluence documentation",
+        "Developed backend for core products using Spring Boot, supporting high transaction volumes",
+        "Created algorithms to auto-generate test cases from historical test-data, reducing manual effort",
+        "Integrated test automation framework with Zephyr Scale for end-to-end traceability",
+        "Implemented Splunk dashboards and alerts for real-time application performance monitoring",
         "Provided technical leadership and mentoring on test automation best practices",
-        "Played key role in SDET recruitment and interviewing"
+        "Played a pivotal role in SDET recruitment and interviewing process"
       ],
       logoUrl: "/images/companies/priceline.png"
     },
     {
-      title: "Automation Developer",
-      company: "Powerhub Inc.",
-      period: "Sept 2020 – June 2021",
-      environment: "Agile, Mocha, Chai, Postman, Puppeteer, TFS, Azure Dev-ops, Node.js, JIRA, MongoDB, JavaScript, Cypress, SonarQube",
+      title: "Automation Engineer",
+      company: "PowerHub",
+      period: "September 2020 – May 2021",
+      environment: "Cypress, Mocha, Chai, JavaScript, MongoDB, Azure DevOps, Eslint, SonarQube, Postman, JMeter",
       responsibilities: [
-        "Developed test automation framework using Cypress, Mocha, and Chai",
-        "Implemented Eslint and SonarQube for code quality maintenance",
-        "Created MongoDB queries for database validation",
-        "Leveraged Azure DevOps for agile ALM processes",
-        "Conducted research on technical solutions and testing frameworks",
-        "Performed API testing using Postman and JMeter for performance testing"
+        "Conducted thorough research on technical solutions and testing frameworks",
+        "Utilized inverse pyramid of automation for comprehensive feature test coverage",
+        "Developed test automation framework using Cypress, Mocha, Chai, and JavaScript",
+        "Implemented Eslint and SonarQube tools for consistent code quality",
+        "Managed test data creation with various JavaScript libraries",
+        "Performed API testing with Postman and JMeter for performance testing",
+        "Created MongoDB queries in Roto3T for database validation",
+        "Scheduled test runs and builds using Azure pipelines",
+        "Leveraged Azure DevOps for agile ALM processes"
       ],
       logoUrl: "/images/companies/powerhub.png"
     },
     {
-      title: "QA Automation Developer",
+      title: "Software Engineer In Test",
       company: "Parsedata",
-      period: "Apr 2020 – Sept 2020",
-      environment: "Agile, Azure, Linux, Microsoft Teams, Azure AD, Bash scripting, Selenium, Python, Java, GitHub, SoapUI",
+      period: "April 2020 – September 2020",
+      environment: "Python, Selenium, Pytest, Azure DevOps, Active Directory, POM, Agile",
       responsibilities: [
         "Gained hands-on experience with Microsoft Azure DevOps portal and Active Directory",
-        "Developed testing framework using Python, Selenium, Pytest, and POM",
-        "Created user stories, acceptance criteria, and API specification documents",
+        "Developed a robust testing framework using Python, Selenium, Pytest, and POM",
+        "Acted as a BA to communicate with clients and understand requirements",
+        "Created user stories, acceptance criteria, API specification documents, and guides",
         "Reduced bug reports and improved testing efficiency through automation"
       ],
       logoUrl: "/images/companies/parsedata.png"
