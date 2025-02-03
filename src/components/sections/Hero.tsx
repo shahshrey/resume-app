@@ -5,13 +5,28 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 import { theme } from '@/lib/theme';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaCalendar } from 'react-icons/fa';
 
 const socialLinks = [
   { icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
   { icon: FaLinkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
   { icon: FaTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
 ];
+
+const CalendlyButton: FC = () => (
+  <motion.a
+    href="https://calendly.com/shreyshah_/30-mins-with-shrey"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center px-6 py-3 rounded-full bg-primary-main hover:bg-primary-light text-background-main transition-colors duration-300 gap-2 mt-6"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    aria-label="Schedule a meeting"
+  >
+    <FaCalendar className="w-5 h-5" />
+    <span className="font-medium">Schedule a Meeting</span>
+  </motion.a>
+);
 
 const Hero: FC = () => {
   return (
@@ -112,21 +127,24 @@ const Hero: FC = () => {
               </div>
 
               {/* Social Links */}
-              <div className="flex space-x-4 pt-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-text-secondary hover:text-primary-main transition-colors duration-300"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-6 h-6" />
-                  </motion.a>
-                ))}
+              <div className="flex flex-col space-y-4 pt-4">
+                <div className="flex space-x-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-secondary hover:text-primary-main transition-colors duration-300"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-6 h-6" />
+                    </motion.a>
+                  ))}
+                </div>
+                <CalendlyButton />
               </div>
             </motion.div>
           </motion.div>
