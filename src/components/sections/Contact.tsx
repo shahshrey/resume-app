@@ -1,9 +1,5 @@
 'use client';
 import React, { useState, FC } from 'react';
-import { motion } from 'framer-motion';
-import { AnimatedSection } from '../ui/AnimatedSection';
-import { SectionHeader } from '../ui/SectionHeader';
-import { theme } from '@/lib/theme';
 
 const ContactItem: FC<{
   icon: JSX.Element;
@@ -50,10 +46,16 @@ const Contact: FC = () => {
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -113,11 +115,64 @@ const Contact: FC = () => {
           />
         </div>
         <div className="rounded-lg bg-background-paper p-6">
-          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let's Connect</h3>
-          <p className="text-text-secondary">
-            I'm always interested in new opportunities and collaborations. Feel free to reach out if
-            you'd like to discuss AI development, automation solutions, or any other tech projects.
-          </p>
+          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let&apos;s Connect</h3>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-text-secondary">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-text-secondary">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-text-secondary">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                rows={4}
+                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full rounded-md bg-primary-main px-4 py-2 text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+            {submitStatus === 'success' && (
+              <p className="text-sm text-green-500">Message sent successfully!</p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="text-sm text-red-500">Failed to send message. Please try again.</p>
+            )}
+          </form>
         </div>
       </div>
     </section>

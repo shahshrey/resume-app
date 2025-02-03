@@ -2,11 +2,11 @@
 import React, { FC } from 'react';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
-import { TimelineItem } from '../ui/TimelineItem';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/Button';
 import { Tooltip } from '../ui/Tooltip';
+import Image from 'next/image';
 
 interface ExperienceItemProps {
   title: string;
@@ -81,12 +81,14 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="h-12 w-12 overflow-hidden rounded-lg border border-primary-main/10 bg-background-paper/50"
+              className="relative h-12 w-12 overflow-hidden rounded-lg border border-primary-main/10 bg-background-paper/50"
             >
-              <img
+              <Image
                 src={logoUrl}
                 alt={`${company} logo`}
-                className="h-full w-full object-contain p-2"
+                fill
+                className="object-contain p-2"
+                sizes="48px"
               />
             </motion.div>
           )}
