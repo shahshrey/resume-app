@@ -3,6 +3,7 @@ import React, { FC, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
+import { theme } from '@/lib/theme';
 import { Button } from '../ui/Button';
 import { Tooltip } from '../ui/Tooltip';
 
@@ -17,6 +18,17 @@ interface SkillProps {
 
 type FilterType = 'All' | 'Beginner' | 'Intermediate' | 'Expert';
 type SortType = 'name' | 'proficiency' | 'experience';
+
+const getTypeColor = (type: SkillProps['type']) => {
+  switch (type) {
+    case 'Expert':
+      return 'from-emerald-500 to-emerald-300';
+    case 'Intermediate':
+      return 'from-amber-500 to-amber-300';
+    case 'Beginner':
+      return 'from-sky-500 to-sky-300';
+  }
+};
 
 const SkillBadge: FC<SkillProps> = ({ name, proficiency, icon, yearsOfExperience, type }) => (
   <motion.div
@@ -330,39 +342,45 @@ const Skills: FC = () => {
     'AI & ML': '🤖',
     Languages: '💻',
     'DevOps & Cloud': '☁️',
+    Databases: '🗄',
     'Testing & QA': '🧪',
-    'Frameworks & Libraries': '📚',
-    'Databases & Tools': '🛠️',
+    'Natural Languages': '🌍',
   };
 
-  const filteredAndSortedSkills = useMemo(() => {
-    let filtered = skillsData;
-    if (filter !== 'All') {
-      filtered = skillsData.filter((skill) => skill.type === filter);
-    }
+  const groupedAndFilteredSkills = useMemo(() => {
+    const grouped = skillsData
+      .filter((skill) => filter === 'All' || skill.type === filter)
+      .sort((a, b) => {
+        switch (sortBy) {
+          case 'name':
+            return a.name.localeCompare(b.name);
+          case 'proficiency':
+            return b.proficiency - a.proficiency;
+          case 'experience':
+            return (b.yearsOfExperience || 0) - (a.yearsOfExperience || 0);
+          default:
+            return 0;
+        }
+      })
+      .reduce(
+        (acc, skill) => {
+          if (!acc[skill.category]) {
+            acc[skill.category] = [];
+          }
+          acc[skill.category].push(skill);
+          return acc;
+        },
+        {} as Record<string, SkillProps[]>
+      );
 
-    return filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'proficiency':
-          return b.proficiency - a.proficiency;
-        case 'experience':
-          return (b.yearsOfExperience || 0) - (a.yearsOfExperience || 0);
-        default:
-          return 0;
-      }
-    });
-  }, [filter, sortBy, skillsData]);
-
-  const skillsByCategory = useMemo(() => {
-    const categories = Array.from(new Set(filteredAndSortedSkills.map((skill) => skill.category)));
-    return categories.map((category) => ({
-      category,
-      skills: filteredAndSortedSkills.filter((skill) => skill.category === category),
-      icon: categoryIcons[category as keyof typeof categoryIcons] || '📌',
-    }));
-  }, [filteredAndSortedSkills, categoryIcons]);
+    return Object.entries(grouped)
+      .map(([category, skills]) => ({
+        category,
+        skills,
+        icon: categoryIcons[category as keyof typeof categoryIcons] || '💡',
+      }))
+      .filter((group) => group.skills.length > 0);
+  }, [filter, sortBy]);
 
   return (
     <AnimatedSection className="container mx-auto px-4 py-12 sm:px-6 lg:px-8" delay={0.4}>
@@ -410,7 +428,7 @@ const Skills: FC = () => {
 
         <motion.div className="space-y-8" layout>
           <AnimatePresence mode="popLayout">
-            {skillsByCategory.map(({ category, skills, icon }) => (
+            {groupedAndFilteredSkills.map(({ category, skills, icon }) => (
               <CategorySection key={category} title={category} skills={skills} icon={icon} />
             ))}
           </AnimatePresence>

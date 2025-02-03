@@ -1,5 +1,9 @@
 'use client';
-import React, { FC } from 'react';
+import React, { useState, FC } from 'react';
+import { motion } from 'framer-motion';
+import { AnimatedSection } from '../ui/AnimatedSection';
+import { SectionHeader } from '../ui/SectionHeader';
+import { theme } from '@/lib/theme';
 
 const ContactItem: FC<{
   icon: JSX.Element;
@@ -28,6 +32,30 @@ const ContactItem: FC<{
 );
 
 const Contact: FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Add your form submission logic here
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-16" id="contact">
       <h2 className="mb-8 text-3xl font-bold text-text-primary">Contact</h2>
@@ -85,11 +113,10 @@ const Contact: FC = () => {
           />
         </div>
         <div className="rounded-lg bg-background-paper p-6">
-          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let&apos;s Connect</h3>
+          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let's Connect</h3>
           <p className="text-text-secondary">
-            I&apos;m always interested in new opportunities and collaborations. Feel free to reach
-            out if you&apos;d like to discuss AI development, automation solutions, or any other
-            tech projects.
+            I'm always interested in new opportunities and collaborations. Feel free to reach out if
+            you'd like to discuss AI development, automation solutions, or any other tech projects.
           </p>
         </div>
       </div>
