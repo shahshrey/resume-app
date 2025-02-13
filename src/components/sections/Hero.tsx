@@ -6,9 +6,9 @@ import { TypeAnimation } from 'react-type-animation';
 import { FaGithub, FaLinkedin, FaTwitter, FaCalendar } from 'react-icons/fa';
 
 const socialLinks = [
-  { icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
-  { icon: FaLinkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
-  { icon: FaTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
+  { icon: FaGithub, href: 'https://github.com/shahshrey', label: 'GitHub' },
+  { icon: FaLinkedin, href: 'https://linkedin.com/in/shreyshahh', label: 'LinkedIn' },
+  { icon: FaTwitter, href: 'https://twitter.com/shreyshahh', label: 'Twitter' },
 ];
 
 const CalendlyButton: FC = () => (
