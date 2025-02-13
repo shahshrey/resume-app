@@ -175,7 +175,7 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
 const Experience: FC = () => {
   const experiences = [
     {
-      title: 'Software Engineer | AI',
+      title: 'Senior Software Engineer | AI',
       company: 'Vivun',
       period: 'June 2023 – Present',
       environment:
