@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, FC } from 'react';
+import { toast } from 'react-hot-toast';
 
 const ContactItem: FC<{
   icon: JSX.Element;
@@ -39,15 +40,30 @@ const Contact: FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
     try {
-      // Add your form submission logic here
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
+      toast.success('Message sent successfully!');
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
+      toast.error('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -127,8 +143,9 @@ const Contact: FC = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
                 required
+                placeholder="Your name"
               />
             </div>
             <div>
@@ -141,8 +158,9 @@ const Contact: FC = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
                 required
+                placeholder="your.email@example.com"
               />
             </div>
             <div>
@@ -155,8 +173,9 @@ const Contact: FC = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={4}
-                className="border-border bg-background mt-1 block w-full rounded-md border px-3 py-2 text-text-primary focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
                 required
+                placeholder="Your message here..."
               />
             </div>
             <button
