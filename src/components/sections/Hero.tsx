@@ -79,7 +79,7 @@ const Hero: FC = () => {
               className="text-2xl font-semibold text-text-secondary md:text-3xl"
             >
               <TypeAnimation
-                sequence={['AI Software Engineer', 2000, 'Full Stack Developer', 2000]}
+                sequence={['Applied AI Engineer', 2000, 'Senior Software Engineer', 2000]}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
@@ -134,10 +134,11 @@ const Hero: FC = () => {
 
               <div className="prose prose-lg">
                 <p className="leading-relaxed text-text-secondary">
-                  AI Software Engineer with over 8 years of experience in software development and
-                  1.5+ years of experience developing AI-driven tools and solutions. Expertise in
-                  LangChain, LangGraph, and litellm with hands-on development of multi-agent
-                  applications, RAG and knowledge graphs systems at scale.
+                  Senior AI Software Engineer with over 8 years of experience in software
+                  development and 2+ years of experience developing AI-driven tools and solutions.
+                  Expertise in LangChain, LangGraph, and RAG with hands-on development of
+                  multi-agent applications, Agentic workflows, and knowledge graphs systems at
+                  scale.
                 </p>
               </div>
 

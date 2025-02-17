@@ -113,9 +113,9 @@ const Education: FC = () => {
       period: 'May 2016 - Aug 2017',
       major: 'Electrical Engineering',
       description:
-        'Advanced studies in electrical engineering with emphasis on industrial automation and control systems.',
+        'Advanced studies in electrical engineering with emphasis on power systems  and control systems.',
       achievements: [
-        'Specialized in industrial automation and control systems',
+        'Specialized in power systems and control systems',
         'Research in electrical systems optimization',
         'Advanced coursework in power systems and electronics',
       ],

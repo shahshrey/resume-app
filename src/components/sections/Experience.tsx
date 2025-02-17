@@ -1,5 +1,5 @@
 'use client';
-import React, { FC } from 'react';
+import React, { FC, use } from 'react';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
 import { motion } from 'framer-motion';
@@ -181,17 +181,22 @@ const Experience: FC = () => {
       environment:
         'LangChain, LangGraph, RAG Systems, Multi-Agent Systems, Neo4j, LLMs, Prompt Engineering, FastAPI, LangServe, Gradio, Streamlit, MLflow, Hugging Face',
       responsibilities: [
-        'Led development of multi-agent applications using LangChain and LangGraph frameworks',
-        'Built innovative systems using advanced AI frameworks and tools',
-        'Implemented various RAG architectures including Hybrid RAG, GraphRAG and Agentic RAG',
-        'Developed CI/CD pipelines for testing and deployment of AI agents',
-        'Integrated knowledge graphs using Neo4j for improved data processing',
-        'Fine-tuned and quantized LLMs for enhanced local performance',
-        'Led AI training sessions and created POCs for latest LLM advancements',
-        'Developed local AI tools fine-tuned for specific use cases',
-        'Optimized inference workflows for low-latency and high-throughput performance',
-        'Engineered prompts and deployed through FastAPI and LangServe',
-        'Created user-friendly interfaces using Gradio and Streamlit',
+        'Became an AI advocate within the team and organization. Led training sessions for Developers on integrating and using AI.',
+        'Always researched and created POCs about the latest advancements in LLMs, fine-tuning techniques, and AI tools and shared findings with the teams as new advancements come up.',
+        'Led the development of multi-agent applications using LangChain and LangGraph frameworks for efficient LLM and RAG-based systems.',
+        'Collaborated with teams to develop proof-of-concept projects exploring RAG solutions, including Hybrid RAG, GrpahRag and Agentic RAG.',
+        'Developed CI/CD pipelines for testing, and deployment of the agents.',
+        'Integrated knowledge graphs using Neo4j, improving data processing and retrieval.',
+        'Demonstrated expertise in a broad spectrum of AI tools including ChatGPT, co-pilot, and Cody, RelicX applying advanced prompt engineering techniques to maximize tool effectiveness and productivity.',
+        'Developed an  instruction-tuned dataset for the purpose of fine-tuning  test automation LLMs  in a local and secure manner.',
+        'Fine-tuned LLaMA3 for specific use cases and domain-specific tasks.',
+        'Conceptualized and executed multiple proof-of-concept projects exploring the application of various AI tools in our project.',
+        'Developed local AI tools fine-tuned for the specific use cases for the applications for increasing productivity.',
+        'Fine-tuned and quantized different LLMS to enhance model performance in local environments, reducing resource consumption.',
+        'Tested our chatbot with different prompt injections and jail breaking techniques.',
+        'Designed and implemented custom data preprocessing and augmentation pipelines to improve model performance.',
+        'Used MCP tools to create a ticket to PR workflows in Cursor, to release features really really fast.',
+        'Created MCP tools to automate workflows without creating agents.',
       ],
       logoUrl: '/images/companies/vivun.jpg',
       isActive: true,
