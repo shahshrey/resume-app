@@ -141,7 +141,7 @@ const Skills: FC = () => {
         proficiency: 85,
         icon: '📊',
         yearsOfExperience: 1,
-        type: 'Advanced' as const,
+        type: 'Expert' as const,
       },
       {
         category: 'AI & ML',
@@ -165,7 +165,7 @@ const Skills: FC = () => {
         proficiency: 85,
         icon: '🎯',
         yearsOfExperience: 1,
-        type: 'Advanced' as const,
+        type: 'Expert' as const,
       },
       {
         category: 'AI & ML',
@@ -173,7 +173,7 @@ const Skills: FC = () => {
         proficiency: 85,
         icon: '🕸️',
         yearsOfExperience: 2,
-        type: 'Advanced' as const,
+        type: 'Expert' as const,
       },
 
       // Languages
@@ -217,7 +217,7 @@ const Skills: FC = () => {
         proficiency: 50,
         icon: '☁️',
         yearsOfExperience: 2,
-        type: 'Basic' as const,
+        type: 'Beginner' as const,
       },
       {
         category: 'DevOps & Cloud',
@@ -267,7 +267,7 @@ const Skills: FC = () => {
         proficiency: 85,
         icon: '🎯',
         yearsOfExperience: 2,
-        type: 'Advanced' as const,
+        type: 'Expert' as const,
       },
       {
         category: 'Testing & QA',
@@ -285,7 +285,7 @@ const Skills: FC = () => {
         proficiency: 85,
         icon: '🕸️',
         yearsOfExperience: 2,
-        type: 'Advanced' as const,
+        type: 'Expert' as const,
       },
       {
         category: 'Databases',
@@ -335,7 +335,7 @@ const Skills: FC = () => {
         proficiency: 60,
         icon: '🇫🇷',
         yearsOfExperience: 0,
-        type: 'Basic' as const,
+        type: 'Beginner' as const,
       },
     ],
     []

@@ -1,5 +1,5 @@
 'use client';
-import React, { FC, use } from 'react';
+import React, { FC } from 'react';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
 import { motion } from 'framer-motion';

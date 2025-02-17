@@ -1,28 +1,15 @@
-import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const { name, email, message } = await request.json();
-
-    // Enhanced input validation
-    if (!name || typeof name !== 'string' || name.trim().length === 0) {
-      return NextResponse.json({ error: 'Valid name is required' }, { status: 400 });
-    }
-
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: 'Valid email address is required' }, { status: 400 });
-    }
-
-    if (!message || typeof message !== 'string' || message.trim().length === 0) {
-      return NextResponse.json({ error: 'Message is required' }, { status: 400 });
-    }
+    const { name, email, message } = await req.json();
 
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: 'shrey094@gmail.com', // Updated email address
+      to: 'shrey094@gmail.com',
       replyTo: email,
       subject: `New Contact Form Message from ${name}`,
       html: `
@@ -39,12 +26,14 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ message: 'Email sent successfully', id: data?.id }, { status: 200 });
-  } catch (error: any) {
-    console.error('Error sending email:', error);
-    return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: 'An unknown error occurred' }, { status: 500 });
   }
 }

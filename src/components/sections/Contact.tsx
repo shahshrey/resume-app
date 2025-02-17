@@ -51,18 +51,14 @@ const Contact: FC = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message');
+        throw new Error('Failed to send message');
       }
 
-      setSubmitStatus('success');
+      toast.success('Thank you for your message. I will get back to you soon.');
+
       setFormData({ name: '', email: '', message: '' });
-      toast.success('Message sent successfully!');
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
+    } catch {
       toast.error('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
