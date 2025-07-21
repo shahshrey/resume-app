@@ -33,9 +33,9 @@ const EducationItem: FC<EducationItemProps> = ({
       className={cn(
         'group relative mb-12 pl-8',
         'before:absolute before:left-0 before:top-2 before:h-4 before:w-4',
-        'before:bg-background before:rounded-full before:border-4 before:border-primary-main',
+        'before:bg-white/20 before:rounded-full before:border-4 before:border-white/60 before:backdrop-blur-xl',
         'after:absolute after:bottom-0 after:left-[7px] after:top-6 after:w-0.5',
-        'after:bg-primary-main/30 last:after:hidden'
+        'after:bg-white/30 last:after:hidden'
       )}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -46,10 +46,9 @@ const EducationItem: FC<EducationItemProps> = ({
     >
       <div
         className={cn(
-          'rounded-lg p-6 transition-all duration-300',
-          'bg-background-paper/50 hover:bg-background-paper',
-          'border border-transparent hover:border-primary-main',
-          'shadow-sm hover:shadow-md'
+          'rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300',
+          'shadow-xl shadow-black/10 hover:border-white/40 hover:bg-white/10',
+          'hover:shadow-2xl hover:shadow-black/20'
         )}
         role="article"
         tabIndex={0}
@@ -57,38 +56,38 @@ const EducationItem: FC<EducationItemProps> = ({
       >
         <div className="flex items-start justify-between gap-4">
           {logo && (
-            <div className="relative h-12 w-12 shrink-0">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-white/30 bg-white/5 backdrop-blur-xl">
               <Image
                 src={logo}
                 alt={`${institution} logo`}
                 fill
-                className="rounded-md object-contain"
+                className="rounded-md object-contain p-2"
                 sizes="48px"
               />
             </div>
           )}
           <div className="flex-1">
-            <h3 className="text-xl font-semibold text-text-primary transition-colors group-hover:text-primary-main">
+            <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-white/90">
               {degree}
             </h3>
-            {major && <p className="mt-1 font-medium text-text-secondary">{major}</p>}
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-text-secondary">
+            {major && <p className="mt-1 font-medium text-white/80">{major}</p>}
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-white/70">
               <span className="font-medium">{institution}</span>
-              <span className="text-text-disabled">•</span>
+              <span className="text-white/50">•</span>
               <motion.span
                 animate={{ opacity: isHovered ? 1 : 0.8 }}
-                className="text-primary-main/80"
+                className="text-white/90"
               >
                 {period}
               </motion.span>
             </div>
 
-            {description && <p className="mt-3 text-text-secondary">{description}</p>}
+            {description && <p className="mt-3 text-white/80">{description}</p>}
 
             {achievements && achievements.length > 0 && (
               <div className="mt-4">
                 <Tooltip content="Notable Achievements">
-                  <ul className="list-inside list-disc space-y-1 text-text-secondary">
+                  <ul className="list-inside list-disc space-y-1 text-white/80">
                     {achievements.map((achievement, index) => (
                       <li key={index} className="text-sm">
                         {achievement}

@@ -8,21 +8,21 @@ const ContactItem: FC<{
   value: string;
   href?: string;
 }> = ({ icon, label, value, href }) => (
-  <div className="flex items-center space-x-3">
-    <div className="text-primary-main">{icon}</div>
+  <div className="flex items-center space-x-3 rounded-lg border border-white/20 bg-white/5 p-3 backdrop-blur-xl transition-all duration-300 hover:border-white/40 hover:bg-white/10">
+    <div className="text-white/80">{icon}</div>
     <div>
-      <p className="text-sm text-text-secondary">{label}</p>
+      <p className="text-sm text-white/70">{label}</p>
       {href ? (
         <a
           href={href}
-          className="text-text-primary transition-colors hover:text-primary-main"
+          className="text-white transition-colors hover:text-white/80"
           target="_blank"
           rel="noopener noreferrer"
         >
           {value}
         </a>
       ) : (
-        <p className="text-text-secondary">{value}</p>
+        <p className="text-white/80">{value}</p>
       )}
     </div>
   </div>
@@ -72,9 +72,9 @@ const Contact: FC = () => {
 
   return (
     <section className="py-16" id="contact">
-      <h2 className="mb-8 text-3xl font-bold text-text-primary">Contact</h2>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="space-y-6">
+        <div className="space-y-6 rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl">
+          <h2 className="mb-6 text-3xl font-bold text-white">Contact</h2>
           <ContactItem
             icon={
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,11 +126,11 @@ const Contact: FC = () => {
             value="Halifax, NS"
           />
         </div>
-        <div className="rounded-lg bg-background-paper p-6">
-          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let&apos;s Connect</h3>
+        <div className="rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl shadow-xl shadow-black/10">
+          <h3 className="mb-4 text-xl font-semibold text-white">Let&apos;s Connect</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-text-secondary">
+              <label htmlFor="name" className="block text-sm font-medium text-white/80">
                 Name
               </label>
               <input
@@ -139,13 +139,13 @@ const Contact: FC = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="mt-1 block w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-white placeholder-white/50 backdrop-blur-xl focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50"
                 required
                 placeholder="Your name"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-secondary">
+              <label htmlFor="email" className="block text-sm font-medium text-white/80">
                 Email
               </label>
               <input
@@ -154,13 +154,13 @@ const Contact: FC = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="mt-1 block w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-white placeholder-white/50 backdrop-blur-xl focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50"
                 required
                 placeholder="your.email@example.com"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-text-secondary">
+              <label htmlFor="message" className="block text-sm font-medium text-white/80">
                 Message
               </label>
               <textarea
@@ -169,7 +169,7 @@ const Contact: FC = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={4}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
+                className="mt-1 block w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-white placeholder-white/50 backdrop-blur-xl focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50"
                 required
                 placeholder="Your message here..."
               />
@@ -177,15 +177,15 @@ const Contact: FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-md bg-primary-main px-4 py-2 text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
+              className="w-full rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-white backdrop-blur-xl transition-all duration-300 hover:border-white/50 hover:bg-white/20 disabled:opacity-50"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
             {submitStatus === 'success' && (
-              <p className="text-sm text-green-500">Message sent successfully!</p>
+              <p className="text-sm text-green-400">Message sent successfully!</p>
             )}
             {submitStatus === 'error' && (
-              <p className="text-sm text-red-500">Failed to send message. Please try again.</p>
+              <p className="text-sm text-red-400">Failed to send message. Please try again.</p>
             )}
           </form>
         </div>
