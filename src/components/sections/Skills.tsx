@@ -33,31 +33,31 @@ const SkillBadge: FC<SkillProps> = ({ name, proficiency, icon, yearsOfExperience
     <Tooltip
       content={`${yearsOfExperience} ${yearsOfExperience === 1 ? 'year' : 'years'} of experience`}
     >
-      <div className="flex items-center gap-3 rounded-lg border border-transparent bg-background-paper/50 p-3 backdrop-blur-sm transition-all duration-300 hover:border-primary-main group-hover:shadow-lg group-hover:shadow-primary-main/5">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-main/5 text-xl">
+      <div className="flex items-center gap-3 rounded-lg border border-white/20 bg-white/5 p-3 backdrop-blur-xl transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:shadow-lg hover:shadow-white/5">
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/10 text-xl backdrop-blur-xl">
           {icon}
         </div>
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
             <div className="min-w-0">
-              <h4 className="truncate text-sm font-medium text-text-primary transition-colors group-hover:text-primary-main">
+              <h4 className="truncate text-sm font-medium text-white transition-colors group-hover:text-white/90">
                 {name}
               </h4>
               <div className="flex items-center gap-2">
-                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-background-elevated">
+                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-white/20 backdrop-blur-xl">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${proficiency}%` }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="h-full bg-gradient-to-r from-primary-main to-primary-light"
+                    className="h-full bg-gradient-to-r from-white/80 to-white/60"
                     role="progressbar"
                     aria-valuenow={proficiency}
                     aria-valuemin={0}
                     aria-valuemax={100}
                   />
                 </div>
-                <span className="whitespace-nowrap rounded-full bg-primary-main/10 px-2 py-0.5 text-xs text-primary-main">
+                <span className="whitespace-nowrap rounded-full border border-white/30 bg-white/10 px-2 py-0.5 text-xs text-white/90 backdrop-blur-xl">
                   {type}
                 </span>
               </div>
@@ -81,11 +81,11 @@ const CategorySection: FC<{ title: string; skills: SkillProps[]; icon: string }>
     exit={{ opacity: 0 }}
     className="space-y-4"
   >
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 rounded-lg border border-white/20 bg-white/5 p-4 backdrop-blur-xl">
       <span className="text-2xl">{icon}</span>
-      <h3 className="bg-gradient-to-r from-primary-main to-primary-light bg-clip-text text-lg font-semibold text-transparent">
+      <h3 className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-lg font-semibold text-transparent">
         {title}
-        <span className="ml-2 text-sm font-normal text-text-secondary">
+        <span className="ml-2 text-sm font-normal text-white/70">
           ({skills.length} {skills.length === 1 ? 'skill' : 'skills'})
         </span>
       </h3>
@@ -379,39 +379,41 @@ const Skills: FC = () => {
       />
 
       <div className="mt-8 flex flex-col gap-6">
-        <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-text-secondary">Filter by level:</span>
-            {(['All', 'Beginner', 'Intermediate', 'Expert'] as FilterType[]).map((type) => (
-              <Button
-                key={type}
-                variant={filter === type ? 'filled' : 'ghost'}
-                size="sm"
-                onClick={() => setFilter(type)}
-                className="rounded-full"
-              >
-                {type}
-              </Button>
-            ))}
-          </div>
+        <div className="rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl">
+          <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm text-white/70">Filter by level:</span>
+              {(['All', 'Beginner', 'Intermediate', 'Expert'] as FilterType[]).map((type) => (
+                <Button
+                  key={type}
+                  variant={filter === type ? 'filled' : 'ghost'}
+                  size="sm"
+                  onClick={() => setFilter(type)}
+                  className="rounded-full"
+                >
+                  {type}
+                </Button>
+              ))}
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-            <span className="text-sm text-text-secondary">Sort by:</span>
-            {[
-              { value: 'name', label: 'Name' },
-              { value: 'proficiency', label: 'Proficiency' },
-              { value: 'experience', label: 'Experience' },
-            ].map(({ value, label }) => (
-              <Button
-                key={value}
-                variant={sortBy === value ? 'filled' : 'ghost'}
-                size="sm"
-                onClick={() => setSortBy(value as SortType)}
-                className="rounded-full"
-              >
-                {label}
-              </Button>
-            ))}
+            <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
+              <span className="text-sm text-white/70">Sort by:</span>
+              {[
+                { value: 'name', label: 'Name' },
+                { value: 'proficiency', label: 'Proficiency' },
+                { value: 'experience', label: 'Experience' },
+              ].map(({ value, label }) => (
+                <Button
+                  key={value}
+                  variant={sortBy === value ? 'filled' : 'ghost'}
+                  size="sm"
+                  onClick={() => setSortBy(value as SortType)}
+                  className="rounded-full"
+                >
+                  {label}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 

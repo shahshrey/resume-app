@@ -20,7 +20,7 @@ interface ExperienceItemProps {
 
 const TechBadge: FC<{ tech: string }> = ({ tech }) => (
   <Tooltip content={`Experience with ${tech}`}>
-    <span className="cursor-default rounded-full border border-primary-main/20 bg-background-paper/50 px-3 py-1 text-sm text-primary-light backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary-main/50 hover:bg-background-paper/80">
+    <span className="cursor-default rounded-full border border-white/30 bg-white/20 px-3 py-1 text-sm text-white/90 transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30">
       {tech}
     </span>
   </Tooltip>
@@ -47,29 +47,27 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
       className="relative mb-12 pl-8 last:mb-0"
     >
       {/* Timeline Marker with Pulse Effect */}
-      <div className="absolute left-0 h-full w-0.5 bg-gradient-to-b from-primary-main/20 to-transparent" />
+      <div className="absolute left-0 h-full w-0.5 bg-gradient-to-b from-white/30 to-transparent" />
       <div className="absolute -left-1.5 flex items-center justify-center">
         <div
           className={cn(
             'h-4 w-4 rounded-full shadow-lg transition-all duration-300',
             isActive
-              ? 'bg-primary-main shadow-primary-main/30'
-              : 'border-2 border-primary-main/50 bg-background-paper'
+              ? 'bg-white/80 shadow-white/40'
+              : 'border-2 border-white/50 bg-white/20 backdrop-blur-xl'
           )}
         />
         {isActive && (
-          <div className="absolute h-8 w-8 animate-ping rounded-full bg-primary-main/20" />
+          <div className="absolute h-8 w-8 animate-ping rounded-full bg-white/20" />
         )}
       </div>
 
       {/* Content Card */}
       <div
         className={cn(
-          'relative rounded-lg p-6 transition-all duration-300',
-          'bg-background-paper/50 backdrop-blur-sm',
-          'border border-transparent hover:border-primary-main',
-          'group cursor-pointer',
-          isHovered && 'scale-[1.02] shadow-lg shadow-primary-main/5'
+          'relative rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300',
+          'group cursor-pointer shadow-xl shadow-black/10',
+          isHovered && 'scale-[1.02] border-white/40 bg-white/10 shadow-2xl shadow-black/20'
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -81,7 +79,7 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="relative h-12 w-12 overflow-hidden rounded-lg border border-primary-main/10 bg-background-paper/50"
+              className="relative h-12 w-12 overflow-hidden rounded-lg border border-white/20 bg-white/5 backdrop-blur-xl"
             >
               <Image
                 src={logoUrl}
@@ -94,13 +92,13 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
           )}
           <div className="flex-1 space-y-1">
             <motion.h3
-              className="text-xl font-semibold text-primary-dark transition-colors group-hover:text-primary-main"
+              className="text-xl font-semibold text-white transition-colors group-hover:text-white/90"
               whileHover={{ x: 4 }}
             >
               {title}
             </motion.h3>
-            <div className="text-secondary-light flex items-center gap-2 text-sm">
-              <span className="font-medium text-primary-light">{company}</span>
+            <div className="flex items-center gap-2 text-sm text-white/70">
+              <span className="font-medium text-white/90">{company}</span>
               <span>•</span>
               <span>{period}</span>
             </div>
@@ -133,10 +131,10 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="text-secondary-DEFAULT group/item flex items-start gap-3"
+                className="group/item flex items-start gap-3 text-white/80"
               >
-                <span className="mt-1.5 h-2 w-2 rounded-full bg-primary-light/50 transition-colors group-hover/item:bg-primary-main/70" />
-                <span className="flex-1 transition-colors group-hover/item:text-primary-dark">
+                <span className="mt-1.5 h-2 w-2 rounded-full bg-white/50 transition-colors group-hover/item:bg-white/80" />
+                <span className="flex-1 transition-colors group-hover/item:text-white/90">
                   {item}
                 </span>
               </motion.li>
@@ -151,7 +149,7 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
             size="sm"
             className={cn(
               'group/button mt-6 w-full justify-center gap-2',
-              isExpanded && 'bg-primary-main/5'
+              isExpanded && 'bg-white/10'
             )}
             onClick={(e) => {
               e.stopPropagation();

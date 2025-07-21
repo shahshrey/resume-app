@@ -27,23 +27,22 @@ const CertificationCard: FC<CertificationProps> = ({
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
     className={cn(
-      'group rounded-lg p-6 transition-all duration-300',
-      'bg-background-paper/50 backdrop-blur-sm',
-      'border border-transparent hover:border-primary-main',
-      'hover:shadow-lg hover:shadow-primary-main/5'
+      'group rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300',
+      'shadow-xl shadow-black/10 hover:border-white/40 hover:bg-white/10',
+      'hover:shadow-2xl hover:shadow-black/20'
     )}
   >
     <div className="flex items-start gap-4">
       {icon && (
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-main/5 text-2xl">
+        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-white/30 bg-white/10 text-2xl backdrop-blur-xl">
           {icon}
         </div>
       )}
       <div className="min-w-0 flex-1">
-        <h3 className="text-lg font-semibold text-text-primary transition-colors group-hover:text-primary-main">
+        <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-white/90">
           {title}
         </h3>
-        <div className="mt-1 flex flex-col gap-2 text-sm text-text-secondary sm:flex-row sm:items-center">
+        <div className="mt-1 flex flex-col gap-2 text-sm text-white/70 sm:flex-row sm:items-center">
           <span className="font-medium">{issuer}</span>
           <span className="hidden sm:inline">•</span>
           <span>{date}</span>
@@ -53,7 +52,7 @@ const CertificationCard: FC<CertificationProps> = ({
             href={credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center text-sm text-primary-main transition-colors hover:text-primary-dark"
+            className="mt-2 inline-flex items-center rounded-lg border border-white/30 bg-white/10 px-3 py-1 text-sm text-white/90 backdrop-blur-xl transition-all duration-300 hover:border-white/50 hover:bg-white/20"
           >
             View Credential
             <span className="ml-1">↗</span>
