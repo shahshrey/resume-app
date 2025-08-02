@@ -5,6 +5,7 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
 import { cn } from '@/lib/utils';
 import { Tooltip } from '../ui/Tooltip';
+import Glass from '../ui/Glass';
 import Image from 'next/image';
 
 interface EducationItemProps {
@@ -44,12 +45,12 @@ const EducationItem: FC<EducationItemProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div
+      <Glass
+        variant="elevated"
+        glow={isHovered}
         className={cn(
-          'rounded-lg p-6 transition-all duration-300',
-          'bg-background-paper/50 hover:bg-background-paper',
-          'border border-transparent hover:border-primary-main',
-          'shadow-sm hover:shadow-md'
+          'p-6 transition-all duration-300',
+          isHovered && 'scale-[1.02] shadow-glass-lg'
         )}
         role="article"
         tabIndex={0}
@@ -100,7 +101,7 @@ const EducationItem: FC<EducationItemProps> = ({
             )}
           </div>
         </div>
-      </div>
+      </Glass>
     </motion.div>
   );
 };

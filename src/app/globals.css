@@ -76,3 +76,112 @@ html {
   display: flex;
   align-items: center;
 }
+
+/* Glass UI utility classes */
+.glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10;
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.glass-card {
+  @apply glass rounded-xl shadow-glass;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.glass-primary {
+  @apply backdrop-blur-lg border border-primary-main/20;
+  background: rgba(124, 58, 237, 0.1);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+}
+
+.glass-elevated {
+  @apply backdrop-blur-xl border border-white/20;
+  background: rgba(42, 42, 53, 0.15);
+  box-shadow: 0 16px 64px rgba(31, 38, 135, 0.5);
+}
+
+.glass-minimal {
+  @apply backdrop-blur-sm border border-white/5;
+  background: rgba(26, 26, 35, 0.25);
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.2);
+}
+
+/* Glass button effects */
+.glass-button {
+  @apply glass-card transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.glass-button:hover::after {
+  left: 100%;
+}
+
+.glass-button:hover {
+  @apply shadow-glass-lg border-white/20;
+  transform: translateY(-2px);
+}
+
+/* Enhanced glow effects for glass */
+.glass-glow {
+  position: relative;
+}
+
+.glass-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(255, 255, 255, 0.1));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Frosted glass text effect */
+.glass-text {
+  @apply backdrop-blur-sm;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  -webkit-background-clip: text;
+  background-clip: text;
+  border-radius: 4px;
+}
+
+/* Glass container with floating animation */
+.glass-float {
+  @apply animate-float;
+}
+
+/* Mesh gradient background for enhanced glass effect */
+.mesh-gradient {
+  background: radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 25% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+}

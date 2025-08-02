@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
+
+    if (!resend) {
+      console.warn('RESEND_API_KEY is not configured. Contact form submissions will not be sent.');
+      return NextResponse.json(
+        { message: 'Contact form is not configured. Please try again later.' },
+        { status: 503 }
+      );
+    }
 
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',

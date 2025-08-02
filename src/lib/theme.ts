@@ -12,6 +12,14 @@ export const theme = {
       elevated: '#2A2A35',
       gradient: 'linear-gradient(180deg, #0A0A0F 0%, #1A1A23 100%)',
     },
+    glass: {
+      primary: 'rgba(26, 26, 35, 0.25)',
+      secondary: 'rgba(42, 42, 53, 0.15)',
+      elevated: 'rgba(124, 58, 237, 0.1)',
+      border: 'rgba(255, 255, 255, 0.1)',
+      highlight: 'rgba(255, 255, 255, 0.05)',
+      glow: 'rgba(124, 58, 237, 0.2)',
+    },
     text: {
       primary: '#FFFFFF',
       secondary: '#A0A0B0',

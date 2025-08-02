@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
-import { cn } from '@/lib/utils';
+import Glass from '../ui/Glass';
 
 interface CertificationProps {
   title: string;
@@ -26,16 +26,11 @@ const CertificationCard: FC<CertificationProps> = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
-    className={cn(
-      'group rounded-lg p-6 transition-all duration-300',
-      'bg-background-paper/50 backdrop-blur-sm',
-      'border border-transparent hover:border-primary-main',
-      'hover:shadow-lg hover:shadow-primary-main/5'
-    )}
   >
+    <Glass variant="elevated" className="group p-6 hover:shadow-glass">
     <div className="flex items-start gap-4">
       {icon && (
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-main/5 text-2xl">
+        <div className="glass-primary flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg text-2xl">
           {icon}
         </div>
       )}
@@ -49,18 +44,24 @@ const CertificationCard: FC<CertificationProps> = ({
           <span>{date}</span>
         </div>
         {credentialUrl && (
-          <a
-            href={credentialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center text-sm text-primary-main transition-colors hover:text-primary-dark"
+          <Glass
+            variant="primary"
+            className="glass-button mt-2 inline-flex items-center gap-2 px-3 py-1 text-sm cursor-pointer"
           >
-            View Credential
-            <span className="ml-1">↗</span>
-          </a>
+            <a
+              href={credentialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1"
+            >
+              View Credential
+              <span>↗</span>
+            </a>
+          </Glass>
         )}
       </div>
     </div>
+    </Glass>
   </motion.div>
 );
 

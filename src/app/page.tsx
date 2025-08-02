@@ -22,8 +22,14 @@ const Contact = dynamic(() => import('@/components/sections/Contact'), {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-4xl space-y-16 px-4 py-8">
+    <main className="relative min-h-screen">
+      {/* Enhanced Background with Mesh Gradient */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 mesh-gradient" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background-main/90 via-background-paper/50 to-background-elevated/30" />
+      </div>
+      
+      <div className="relative mx-auto max-w-4xl space-y-16 px-4 py-8">
         <Hero />
         <Experience />
         <Education />
