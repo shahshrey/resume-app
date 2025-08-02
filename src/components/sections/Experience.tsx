@@ -4,8 +4,8 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/Button';
 import { Tooltip } from '../ui/Tooltip';
+import Glass from '../ui/Glass';
 import Image from 'next/image';
 
 interface ExperienceItemProps {
@@ -20,9 +20,13 @@ interface ExperienceItemProps {
 
 const TechBadge: FC<{ tech: string }> = ({ tech }) => (
   <Tooltip content={`Experience with ${tech}`}>
-    <span className="cursor-default rounded-full border border-primary-main/20 bg-background-paper/50 px-3 py-1 text-sm text-primary-light backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary-main/50 hover:bg-background-paper/80">
+    <motion.span 
+      className="glass-minimal cursor-default px-3 py-1 text-sm text-primary-light transition-all duration-300 hover:scale-105 hover:border-primary-main/50"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
       {tech}
-    </span>
+    </motion.span>
   </Tooltip>
 );
 
@@ -63,13 +67,12 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
       </div>
 
       {/* Content Card */}
-      <div
+      <Glass
+        variant={isActive ? "primary" : "elevated"}
+        glow={isActive}
         className={cn(
-          'relative rounded-lg p-6 transition-all duration-300',
-          'bg-background-paper/50 backdrop-blur-sm',
-          'border border-transparent hover:border-primary-main',
-          'group cursor-pointer',
-          isHovered && 'scale-[1.02] shadow-lg shadow-primary-main/5'
+          'p-6 cursor-pointer group',
+          isHovered && 'shadow-glass-lg'
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -146,28 +149,31 @@ const ExperienceItem: FC<ExperienceItemProps> = ({
 
         {/* Enhanced Expand/Collapse Button */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-          <Button
-            variant="ghost"
-            size="sm"
+          <Glass
+            variant="minimal"
             className={cn(
-              'group/button mt-6 w-full justify-center gap-2',
-              isExpanded && 'bg-primary-main/5'
+              'glass-button group/button mt-6 w-full justify-center gap-2 px-4 py-2 text-center cursor-pointer',
+              isExpanded && 'glass-primary'
             )}
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsExpanded(!isExpanded);
-            }}
           >
-            <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
-            <motion.span
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              className="opacity-50 group-hover/button:opacity-100"
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
+              className="flex items-center justify-center gap-2 w-full"
             >
-              ↓
-            </motion.span>
-          </Button>
+              <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+              <motion.span
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                className="opacity-50 group-hover/button:opacity-100"
+              >
+                ↓
+              </motion.span>
+            </div>
+          </Glass>
         </motion.div>
-      </div>
+      </Glass>
     </motion.div>
   );
 };

@@ -3,8 +3,8 @@ import React, { FC, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { SectionHeader } from '../ui/SectionHeader';
-import { Button } from '../ui/Button';
 import { Tooltip } from '../ui/Tooltip';
+import Glass from '../ui/Glass';
 
 interface SkillProps {
   name: string;
@@ -33,8 +33,11 @@ const SkillBadge: FC<SkillProps> = ({ name, proficiency, icon, yearsOfExperience
     <Tooltip
       content={`${yearsOfExperience} ${yearsOfExperience === 1 ? 'year' : 'years'} of experience`}
     >
-      <div className="flex items-center gap-3 rounded-lg border border-transparent bg-background-paper/50 p-3 backdrop-blur-sm transition-all duration-300 hover:border-primary-main group-hover:shadow-lg group-hover:shadow-primary-main/5">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-main/5 text-xl">
+      <Glass 
+        variant="minimal" 
+        className="flex items-center gap-3 p-3 hover:border-primary-main group-hover:shadow-glass"
+      >
+        <div className="glass-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-xl">
           {icon}
         </div>
 
@@ -45,26 +48,26 @@ const SkillBadge: FC<SkillProps> = ({ name, proficiency, icon, yearsOfExperience
                 {name}
               </h4>
               <div className="flex items-center gap-2">
-                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-background-elevated">
+                <div className="h-1.5 w-20 overflow-hidden rounded-full bg-background-elevated/50 backdrop-blur-sm">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${proficiency}%` }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="h-full bg-gradient-to-r from-primary-main to-primary-light"
+                    className="h-full bg-gradient-to-r from-primary-main to-primary-light shadow-neon"
                     role="progressbar"
                     aria-valuenow={proficiency}
                     aria-valuemin={0}
                     aria-valuemax={100}
                   />
                 </div>
-                <span className="whitespace-nowrap rounded-full bg-primary-main/10 px-2 py-0.5 text-xs text-primary-main">
+                <span className="glass-minimal whitespace-nowrap px-2 py-0.5 text-xs text-primary-main">
                   {type}
                 </span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Glass>
     </Tooltip>
   </motion.div>
 );
@@ -74,30 +77,32 @@ const CategorySection: FC<{ title: string; skills: SkillProps[]; icon: string }>
   skills,
   icon,
 }) => (
-  <motion.div
-    layout
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="space-y-4"
-  >
-    <div className="flex items-center gap-3">
-      <span className="text-2xl">{icon}</span>
-      <h3 className="bg-gradient-to-r from-primary-main to-primary-light bg-clip-text text-lg font-semibold text-transparent">
-        {title}
-        <span className="ml-2 text-sm font-normal text-text-secondary">
-          ({skills.length} {skills.length === 1 ? 'skill' : 'skills'})
-        </span>
-      </h3>
-    </div>
-    <motion.div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" layout>
-      <AnimatePresence mode="popLayout">
-        {skills.map((skill) => (
-          <SkillBadge key={skill.name} {...skill} />
-        ))}
-      </AnimatePresence>
+  <Glass variant="elevated" className="p-6 space-y-4">
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="space-y-4"
+    >
+      <div className="flex items-center gap-3">
+        <span className="text-2xl">{icon}</span>
+        <h3 className="bg-gradient-to-r from-primary-main to-primary-light bg-clip-text text-lg font-semibold text-transparent">
+          {title}
+          <span className="ml-2 text-sm font-normal text-text-secondary">
+            ({skills.length} {skills.length === 1 ? 'skill' : 'skills'})
+          </span>
+        </h3>
+      </div>
+      <motion.div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" layout>
+        <AnimatePresence mode="popLayout">
+          {skills.map((skill) => (
+            <SkillBadge key={skill.name} {...skill} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </motion.div>
-  </motion.div>
+  </Glass>
 );
 
 const Skills: FC = () => {
@@ -379,41 +384,41 @@ const Skills: FC = () => {
       />
 
       <div className="mt-8 flex flex-col gap-6">
-        <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-text-secondary">Filter by level:</span>
-            {(['All', 'Beginner', 'Intermediate', 'Expert'] as FilterType[]).map((type) => (
-              <Button
-                key={type}
-                variant={filter === type ? 'filled' : 'ghost'}
-                size="sm"
-                onClick={() => setFilter(type)}
-                className="rounded-full"
-              >
-                {type}
-              </Button>
-            ))}
-          </div>
+        <Glass variant="minimal" className="p-4">
+          <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm text-text-secondary">Filter by level:</span>
+              {(['All', 'Beginner', 'Intermediate', 'Expert'] as FilterType[]).map((type) => (
+                <Glass
+                  key={type}
+                  variant={filter === type ? 'primary' : 'minimal'}
+                  onClick={() => setFilter(type)}
+                  className="glass-button px-4 py-2 text-sm cursor-pointer"
+                >
+                  {type}
+                </Glass>
+              ))}
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-            <span className="text-sm text-text-secondary">Sort by:</span>
-            {[
-              { value: 'name', label: 'Name' },
-              { value: 'proficiency', label: 'Proficiency' },
-              { value: 'experience', label: 'Experience' },
-            ].map(({ value, label }) => (
-              <Button
-                key={value}
-                variant={sortBy === value ? 'filled' : 'ghost'}
-                size="sm"
-                onClick={() => setSortBy(value as SortType)}
-                className="rounded-full"
-              >
-                {label}
-              </Button>
-            ))}
+            <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
+              <span className="text-sm text-text-secondary">Sort by:</span>
+              {[
+                { value: 'name', label: 'Name' },
+                { value: 'proficiency', label: 'Proficiency' },
+                { value: 'experience', label: 'Experience' },
+              ].map(({ value, label }) => (
+                <Glass
+                  key={value}
+                  variant={sortBy === value ? 'primary' : 'minimal'}
+                  onClick={() => setSortBy(value as SortType)}
+                  className="glass-button px-4 py-2 text-sm cursor-pointer"
+                >
+                  {label}
+                </Glass>
+              ))}
+            </div>
           </div>
-        </div>
+        </Glass>
 
         <motion.div className="space-y-8" layout>
           <AnimatePresence mode="popLayout">

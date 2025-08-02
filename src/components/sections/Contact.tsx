@@ -1,6 +1,10 @@
 'use client';
 import React, { useState, FC } from 'react';
 import { toast } from 'react-hot-toast';
+import { motion } from 'framer-motion';
+import Glass from '../ui/Glass';
+import { AnimatedSection } from '../ui/AnimatedSection';
+import { SectionHeader } from '../ui/SectionHeader';
 
 const ContactItem: FC<{
   icon: JSX.Element;
@@ -8,24 +12,30 @@ const ContactItem: FC<{
   value: string;
   href?: string;
 }> = ({ icon, label, value, href }) => (
-  <div className="flex items-center space-x-3">
-    <div className="text-primary-main">{icon}</div>
-    <div>
-      <p className="text-sm text-text-secondary">{label}</p>
-      {href ? (
-        <a
-          href={href}
-          className="text-text-primary transition-colors hover:text-primary-main"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {value}
-        </a>
-      ) : (
-        <p className="text-text-secondary">{value}</p>
-      )}
-    </div>
-  </div>
+  <Glass variant="minimal" className="p-4 group hover:shadow-glass">
+    <motion.div 
+      className="flex items-center space-x-3"
+      whileHover={{ x: 5 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="glass-primary p-2 rounded-lg text-primary-main">{icon}</div>
+      <div>
+        <p className="text-sm text-text-secondary">{label}</p>
+        {href ? (
+          <a
+            href={href}
+            className="text-text-primary transition-colors hover:text-primary-main group-hover:text-primary-light"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {value}
+          </a>
+        ) : (
+          <p className="text-text-secondary group-hover:text-text-primary">{value}</p>
+        )}
+      </div>
+    </motion.div>
+  </Glass>
 );
 
 const Contact: FC = () => {
@@ -71,10 +81,19 @@ const Contact: FC = () => {
   };
 
   return (
-    <section className="py-16" id="contact">
-      <h2 className="mb-8 text-3xl font-bold text-text-primary">Contact</h2>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="space-y-6">
+    <AnimatedSection className="py-16" delay={0.6} id="contact">
+      <SectionHeader 
+        title="Contact" 
+        subtitle="Let's connect and discuss opportunities"
+      />
+      
+      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <motion.div 
+          className="space-y-6"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <ContactItem
             icon={
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,72 +144,90 @@ const Contact: FC = () => {
             label="Location"
             value="Halifax, NS"
           />
-        </div>
-        <div className="rounded-lg bg-background-paper p-6">
-          <h3 className="mb-4 text-xl font-semibold text-text-primary">Let&apos;s Connect</h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-text-secondary">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
-                required
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-secondary">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
-                required
-                placeholder="your.email@example.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-text-secondary">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={4}
-                className="border-border mt-1 block w-full rounded-md border bg-background-paper px-3 py-2 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-1 focus:ring-primary-main"
-                required
-                placeholder="Your message here..."
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full rounded-md bg-primary-main px-4 py-2 text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-            {submitStatus === 'success' && (
-              <p className="text-sm text-green-500">Message sent successfully!</p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-sm text-red-500">Failed to send message. Please try again.</p>
-            )}
-          </form>
-        </div>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <Glass variant="elevated" className="p-6">
+            <h3 className="mb-6 text-xl font-semibold text-text-primary">Let&apos;s Connect</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="glass-minimal w-full px-4 py-3 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-2 focus:ring-primary-main/20 transition-all duration-300"
+                  required
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="glass-minimal w-full px-4 py-3 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-2 focus:ring-primary-main/20 transition-all duration-300"
+                  required
+                  placeholder="your.email@example.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="glass-minimal w-full px-4 py-3 text-text-primary placeholder-text-secondary/50 focus:border-primary-main focus:outline-none focus:ring-2 focus:ring-primary-main/20 transition-all duration-300 resize-none"
+                  required
+                  placeholder="Your message here..."
+                />
+              </div>
+              <Glass 
+                variant="primary" 
+                glow 
+                shimmer
+                className="glass-button w-full px-4 py-3 text-white font-medium disabled:opacity-50"
+              >
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </Glass>
+              {submitStatus === 'success' && (
+                <Glass variant="minimal" className="p-3">
+                  <p className="text-sm text-green-400">Message sent successfully!</p>
+                </Glass>
+              )}
+              {submitStatus === 'error' && (
+                <Glass variant="minimal" className="p-3">
+                  <p className="text-sm text-red-400">Failed to send message. Please try again.</p>
+                </Glass>
+              )}
+            </form>
+          </Glass>
+        </motion.div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

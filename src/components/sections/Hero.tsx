@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import { FaGithub, FaLinkedin, FaTwitter, FaCalendar } from 'react-icons/fa';
+import Glass from '../ui/Glass';
 
 const socialLinks = [
   { icon: FaGithub, href: 'https://github.com/shahshrey', label: 'GitHub' },
@@ -12,18 +13,25 @@ const socialLinks = [
 ];
 
 const CalendlyButton: FC = () => (
-  <motion.a
-    href="https://calendly.com/shreyshah_/30-mins-with-shrey"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary-main px-6 py-3 text-background-main transition-colors duration-300 hover:bg-primary-light"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    aria-label="Schedule a meeting"
+  <Glass 
+    variant="primary" 
+    glow 
+    shimmer
+    className="glass-button inline-flex items-center gap-2 px-6 py-3 font-medium text-white mt-6"
   >
-    <FaCalendar className="h-5 w-5" />
-    <span className="font-medium">Schedule a Meeting</span>
-  </motion.a>
+    <motion.a
+      href="https://calendly.com/shreyshah_/30-mins-with-shrey"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label="Schedule a meeting"
+    >
+      <FaCalendar className="h-5 w-5" />
+      <span>Schedule a Meeting</span>
+    </motion.a>
+  </Glass>
 );
 
 const Hero: FC = () => {
@@ -93,8 +101,8 @@ const Hero: FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              {/* Contact Info with Hover Effects */}
-              <div className="space-y-3">
+              {/* Contact Info with Glass Cards */}
+              <Glass variant="minimal" className="p-4 space-y-3">
                 {[
                   {
                     icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
@@ -130,28 +138,30 @@ const Hero: FC = () => {
                     <span>{item.text}</span>
                   </motion.div>
                 ))}
-              </div>
+              </Glass>
 
-              <div className="prose prose-lg">
-                <p className="leading-relaxed text-text-secondary">
-                  Senior AI Software Engineer with over 8 years of experience in software
-                  development and 2+ years of experience developing AI-driven tools and solutions.
-                  Expertise in LangChain, LangGraph, and RAG with hands-on development of
-                  multi-agent applications, Agentic workflows, and knowledge graphs systems at
-                  scale.
-                </p>
-              </div>
+              <Glass variant="minimal" className="p-6">
+                <div className="prose prose-lg">
+                  <p className="leading-relaxed text-text-secondary">
+                    Senior AI Software Engineer with over 8 years of experience in software
+                    development and 2+ years of experience developing AI-driven tools and solutions.
+                    Expertise in LangChain, LangGraph, and RAG with hands-on development of
+                    multi-agent applications, Agentic workflows, and knowledge graphs systems at
+                    scale.
+                  </p>
+                </div>
+              </Glass>
 
               {/* Social Links */}
               <div className="flex flex-col space-y-4 pt-4">
-                <div className="flex space-x-4">
+                <Glass variant="minimal" className="flex space-x-4 p-3 justify-center">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-secondary transition-colors duration-300 hover:text-primary-main"
+                      className="glass-button p-2 rounded-lg text-text-secondary transition-colors duration-300 hover:text-primary-main"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       aria-label={social.label}
@@ -159,7 +169,7 @@ const Hero: FC = () => {
                       <social.icon className="h-6 w-6" />
                     </motion.a>
                   ))}
-                </div>
+                </Glass>
                 <CalendlyButton />
               </div>
             </motion.div>
@@ -199,7 +209,7 @@ const Hero: FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator with Glass Effect */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
         animate={{
@@ -210,9 +220,20 @@ const Hero: FC = () => {
           repeat: Infinity,
         }}
       >
-        <div className="flex h-10 w-6 justify-center rounded-full border-2 border-text-secondary">
-          <div className="mt-2 h-3 w-1 rounded-full bg-primary-main" />
-        </div>
+        <Glass variant="minimal" className="glass-glow p-3">
+          <div className="flex h-10 w-6 justify-center rounded-full border-2 border-primary-main/30 backdrop-blur-sm">
+            <motion.div 
+              className="mt-2 h-3 w-1 rounded-full bg-gradient-to-t from-primary-main to-primary-light shadow-neon"
+              animate={{
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+            />
+          </div>
+        </Glass>
       </motion.div>
     </section>
   );
