@@ -1,4 +1,5 @@
 import { createGroq } from '@ai-sdk/groq';
+import { generateText } from 'ai';
 
 export async function GET() {
   try {
@@ -18,12 +19,12 @@ export async function GET() {
 
     const model = groq('openai/gpt-oss-120b');
     
-    const testCall = await model.generateText({
+    const testCall = await generateText({
+      model,
       messages: [{
         role: 'user',
         content: 'Say "test" only'
-      }],
-      maxTokens: 10
+      }]
     });
 
     return Response.json({ 
