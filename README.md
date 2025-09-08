@@ -1,163 +1,62 @@
-# Personal Portfolio Website
+<a href="https://chat.vercel.ai/">
+  <img alt="Next.js 14 and App Router-ready AI chatbot." src="app/(chat)/opengraph-image.png">
+  <h1 align="center">Chat SDK</h1>
+</a>
 
-A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This portfolio showcases professional experience, skills, and projects with a focus on performance, accessibility, and modern design principles.
+<p align="center">
+    Chat SDK is a free, open-source template built with Next.js and the AI SDK that helps you quickly build powerful chatbot applications.
+</p>
 
-## 🌟 Features
+<p align="center">
+  <a href="https://chat-sdk.dev"><strong>Read Docs</strong></a> ·
+  <a href="#features"><strong>Features</strong></a> ·
+  <a href="#model-providers"><strong>Model Providers</strong></a> ·
+  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
+  <a href="#running-locally"><strong>Running locally</strong></a>
+</p>
+<br/>
 
-- Server-Side Rendering with Next.js 14
-- Type-safe development with TypeScript
-- Responsive design with Tailwind CSS
-- Modern UI components with Shadcn UI
-- Animated sections and transitions
-- Contact form with email integration
-- Mobile-first approach
-- Accessibility focused
-- Performance optimized
+## Features
 
-## 🏗️ Architecture
+- [Next.js](https://nextjs.org) App Router
+  - Advanced routing for seamless navigation and performance
+  - React Server Components (RSCs) and Server Actions for server-side rendering and increased performance
+- [AI SDK](https://sdk.vercel.ai/docs)
+  - Unified API for generating text, structured objects, and tool calls with LLMs
+  - Hooks for building dynamic chat and generative user interfaces
+  - Supports xAI (default), OpenAI, Fireworks, and other model providers
+- [shadcn/ui](https://ui.shadcn.com)
+  - Styling with [Tailwind CSS](https://tailwindcss.com)
+  - Component primitives from [Radix UI](https://radix-ui.com) for accessibility and flexibility
+- Data Persistence
+  - [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for saving chat history and user data
+  - [Vercel Blob](https://vercel.com/storage/blob) for efficient file storage
+- [Auth.js](https://authjs.dev)
+  - Simple and secure authentication
 
-```mermaid
-graph TD
-    A[Client] --> B[Next.js App Router]
-    B --> C[Server Components]
-    B --> D[Client Components]
-    C --> E[API Routes]
-    D --> F[UI Components]
-    F --> G[Shadcn/Radix]
-    F --> H[TailwindCSS]
-    E --> I[External Services]
-```
+## Model Providers
 
-## 📁 Project Structure
+This template ships with [xAI](https://x.ai) `grok-2-1212` as the default chat model. However, with the [AI SDK](https://sdk.vercel.ai/docs), you can switch LLM providers to [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://sdk.vercel.ai/providers/ai-sdk-providers) with just a few lines of code.
 
-```mermaid
-graph TD
-    A[src/] --> B[app/]
-    A --> C[components/]
-    A --> D[lib/]
-    A --> E[styles/]
-    A --> F[data/]
-    B --> G[api/]
-    B --> H[layout.tsx]
-    B --> I[page.tsx]
-    C --> J[sections/]
-    C --> K[ui/]
-    D --> L[utils/]
-    D --> M[constants/]
-```
+## Deploy Your Own
 
-## 🚀 Getting Started
+You can deploy your own version of the Next.js AI Chatbot to Vercel with one click:
 
-### Prerequisites
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai-chatbot&env=AUTH_SECRET&envDescription=Learn+more+about+how+to+get+the+API+Keys+for+the+application&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fai-chatbot%2Fblob%2Fmain%2F.env.example&demo-title=AI+Chatbot&demo-description=An+Open-Source+AI+Chatbot+Template+Built+With+Next.js+and+the+AI+SDK+by+Vercel.&demo-url=https%3A%2F%2Fchat.vercel.ai&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22ai%22%2C%22productSlug%22%3A%22grok%22%2C%22integrationSlug%22%3A%22xai%22%7D%2C%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22storage%22%2C%22productSlug%22%3A%22neon%22%2C%22integrationSlug%22%3A%22neon%22%7D%2C%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22storage%22%2C%22productSlug%22%3A%22upstash-kv%22%2C%22integrationSlug%22%3A%22upstash%22%7D%2C%7B%22type%22%3A%22blob%22%7D%5D)
 
-- Node.js 18.x or higher
-- pnpm package manager
+## Running locally
 
-### Installation
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js AI Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
-1. Clone the repository
-```bash
-git clone https://github.com/shahshrey/resume-app
-```
+> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
 
-2. Install dependencies
+1. Install Vercel CLI: `npm i -g vercel`
+2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
+3. Download your environment variables: `vercel env pull`
+
 ```bash
 pnpm install
-```
-
-3. Set up environment variables
-```bash
-cp .env.example .env.local
-```
-
-4. Start the development server
-```bash
 pnpm dev
 ```
 
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Shadcn UI / Radix UI
-- **State Management**: React Context
-- **Form Handling**: React Hook Form
-- **Animations**: Framer Motion
-- **Linting**: ESLint
-- **Formatting**: Prettier
-- **Git Hooks**: Husky
-- **Deployment**: Vercel
-
-## 📦 Component Structure
-
-```mermaid
-graph TD
-    A[Page] --> B[Layout]
-    B --> C[AnimatedSection]
-    C --> D[Hero]
-    C --> E[Experience]
-    C --> F[Skills]
-    C --> G[Education]
-    C --> H[Certifications]
-    C --> I[Contact]
-    D & E & F & G & H & I --> J[UI Components]
-```
-
-## 🔧 Configuration Files
-
-- `tsconfig.json`: TypeScript configuration
-- `tailwind.config.js`: Tailwind CSS configuration
-- `postcss.config.js`: PostCSS plugins configuration
-- `.eslintrc.json`: ESLint rules
-- `.prettierrc`: Prettier formatting rules
-- `commitlint.config.js`: Commit message linting rules
-
-## 📱 Responsive Design
-
-The portfolio follows a mobile-first approach with responsive breakpoints:
-
-- Mobile: < 640px
-- Tablet: 640px - 1024px
-- Desktop: > 1024px
-
-## ♿ Accessibility
-
-- ARIA labels and roles
-- Keyboard navigation
-- Focus management
-- Color contrast compliance
-- Screen reader optimization
-
-## ⚡ Performance Optimization
-
-- Server Components
-- Image optimization
-- Lazy loading
-- Code splitting
-- Font optimization
-- Asset minification
-
-## 🔐 Security
-
-- Input sanitization
-- Environment variables
-- API route protection
-- Content Security Policy
-- XSS prevention
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-For any questions or concerns, please open an issue or reach out through the contact form on the website. 
+Your app template should now be running on [localhost:3000](http://localhost:3000).
