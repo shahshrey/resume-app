@@ -41,6 +41,11 @@ function PureSuggestedActions({
       label: 'with Shrey',
       action: 'I want to schedule a meeting with Shrey',
     },
+    {
+      title: 'Listen to Shrey\'s AI generated podcast',
+      label: 'in his voice',
+      action: 'I want to listen to Shrey\'s AI generated podcast',
+    },
   ];
 
   return (

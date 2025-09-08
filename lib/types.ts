@@ -3,6 +3,7 @@ import { z } from 'zod';
 import type { getResume } from './ai/tools/get-resume';
 import type { sendEmail } from './ai/tools/send-email';
 import type { requestSuggestions } from './ai/tools/request-suggestions';
+import type { listenPodcast } from './ai/tools/listen-podcast';
 import type { InferUITool, UIMessage } from 'ai';
 
 
@@ -21,11 +22,13 @@ type sendEmailTool = InferUITool<typeof sendEmail>;
 type requestSuggestionsTool = InferUITool<
   ReturnType<typeof requestSuggestions>
 >;
+type listenPodcastTool = InferUITool<typeof listenPodcast>;
 
 export type ChatTools = {
   getResume: resumeTool;
   sendEmail: sendEmailTool;
   requestSuggestions: requestSuggestionsTool;
+  listenPodcast: listenPodcastTool;
 };
 
 export type CustomUIDataTypes = {

@@ -13,6 +13,7 @@ import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
 
 import { getResume } from '@/lib/ai/tools/get-resume';
 import { sendEmail } from '@/lib/ai/tools/send-email';
+import { listenPodcast } from '@/lib/ai/tools/listen-podcast';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 
@@ -70,6 +71,7 @@ export async function POST(request: Request) {
                   'requestSuggestions',
                   'getResume',
                   'sendEmail',
+                  'listenPodcast',
                 ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           tools: {
@@ -78,6 +80,7 @@ export async function POST(request: Request) {
             }),
             getResume,
             sendEmail,
+            listenPodcast,
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,

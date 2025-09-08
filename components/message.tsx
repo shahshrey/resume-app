@@ -253,6 +253,29 @@ const PurePreviewMessage = ({
                 }
               }
 
+              if (type === 'tool-listenPodcast') {
+                const { toolCallId, state } = part;
+
+                if (state === 'output-available') {
+                  const { output } = part as any;
+                  if (
+                    output &&
+                    typeof output === 'object' &&
+                    'type' in output &&
+                    output.type === 'audio' &&
+                    'src' in output
+                  ) {
+                    return (
+                      <div key={toolCallId} className="w-full">
+                        <audio controls className="w-full">
+                          <source src={String(output.src)} type="audio/mpeg" />
+                        </audio>
+                      </div>
+                    );
+                  }
+                }
+              }
+
               if (type === 'tool-sendEmail') {
                 const { toolCallId, state } = part;
 
