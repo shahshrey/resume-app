@@ -6,6 +6,7 @@ import { Navbar } from './navbar';
 import { HeroSection } from './hero-section';
 import { AboutSection } from './about-section';
 import { ExperienceSection } from './experience-section';
+import { EducationSection } from './education-section';
 import { SkillsSection } from './skills-section';
 import { TalksSection } from './talks-section';
 import { CTASection } from './cta-section';
@@ -55,6 +56,7 @@ export default function Portfolio() {
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
+        <EducationSection />
         <SkillsSection />
         <TalksSection />
         <CTASection />

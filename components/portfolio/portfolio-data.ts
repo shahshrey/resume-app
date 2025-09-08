@@ -27,7 +27,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Cursor Ambassador",
-      company: "Anysphere",
+      company: "Cursor",
       period: "Mar 2025 - Present",
       tech: ["AI Tools", "Community Building", "Developer Relations"],
       achievements: [
@@ -46,6 +46,50 @@ export const RESUME_DATA = {
         "Implemented GitHub actions for automating release process",
         "Developed backend for core products using Spring Boot"
       ]
+    },
+    {
+      title: "Automation Developer",
+      company: "Powerhub Inc.",
+      period: "Sep 2020 – June 2021",
+      tech: ["Cypress", "Mocha", "Chai", "JavaScript", "ESLint", "SonarQube", "Postman", "JMeter", "MongoDB"],
+      achievements: [
+        "Built test automation framework from scratch improving automation efficiency",
+        "Implemented ESLint and SonarQube to maintain code quality",
+        "Performed API/UI performance testing and database validation"
+      ]
+    },
+    {
+      title: "QA Automation Developer",
+      company: "Parsedata",
+      period: "Apr 2020 – Sep 2020",
+      tech: ["Azure", "Linux", "Azure AD", "Bash", "Selenium", "Python", "Java", "GitHub", "SoapUI"],
+      achievements: [
+        "Gained hands-on experience with Azure DevOps and Active Directory",
+        "Developed testing framework using Python, Selenium, Pytest, and POM"
+      ]
+    },
+    {
+      title: "Quality Assurance Automation Engineer",
+      company: "NXM Labs INC",
+      period: "Feb 2019 – Apr 2020",
+      tech: ["Selenium WebDriver", "Python", "Java", "TestNG", "JIRA", "IoT", "POM", "GitLab", "SoapUI", "JMeter", "ADB", "Appium", "Gherkin"],
+      achievements: [
+        "Led testing across Blockchain, Mobile, Web, SQL, and IoT systems",
+        "Built data-driven frameworks for API/Web/Mobile testing",
+        "Engineered API testing framework using Python and Pytest",
+        "Conducted load testing to optimize performance",
+        "Reduced errors via Sonarlint and SonarQube analysis"
+      ]
+    },
+    {
+      title: "Software Tester",
+      company: "Webyoutechnologies",
+      period: "May 2014 – Apr 2016",
+      tech: ["Selenium", "Hybrid Framework", "POM", "TestNG"],
+      achievements: [
+        "Developed Selenium test cases using a Hybrid framework",
+        "Validated scripts to ensure correct execution"
+      ]
     }
   ],
   skills: {
@@ -54,6 +98,18 @@ export const RESUME_DATA = {
     tools: ["Docker", "Kubernetes", "GitHub Actions", "Harness"],
     databases: ["SQL Server", "MySQL", "MongoDB", "Chroma"]
   },
+  education: [
+    {
+      degree: "Master of Engineering",
+      institution: "University of Windsor",
+      period: "May 2016 – Aug 2017"
+    },
+    {
+      degree: "Bachelor of Engineering",
+      institution: "Gujarat Technological University",
+      period: "Aug 2011 – May 2015"
+    }
+  ],
   talks: [
     {
       title: "Building Production-Ready AI Agents",

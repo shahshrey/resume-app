@@ -7,8 +7,12 @@ import { RESUME_DATA } from './portfolio-data';
 
 const companyLogos: Record<string, string> = {
   'Vivun': '/images/companies/vivun.jpg',
-  'Anysphere': '/images/companies/anysphere.png',
-  'Priceline': '/images/companies/priceline.png'
+  'Cursor': '/images/companies/cursor.png',
+  'Priceline': '/images/companies/priceline.png',
+  'Powerhub Inc.': '/images/companies/powerhub.png',
+  'Parsedata': '/images/companies/parsedata.png',
+  'NXM Labs INC': '/images/companies/nxm.png',
+  'Webyoutechnologies': '/images/companies/webyou.png'
 };
 
 export function ExperienceSection() {

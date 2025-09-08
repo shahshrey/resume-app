@@ -65,7 +65,7 @@ const RESUME_DATA: ResumeData = {
     },
     {
       title: "Cursor Ambassador",
-      company: "Anysphere",
+      company: "Cursor",
       duration: "Mar 2025 - Present",
       environment: "",
       highlights: [
@@ -113,7 +113,7 @@ export const getResume = tool({
   description: 'Get Shrey Shah resume information. Use "markdown" for full resume display, or specific sections like "summary", "experience", "skills", "education" for structured components. For experience, you can optionally filter by company name.',
   inputSchema: z.object({
     section: z.enum(['summary', 'experience', 'skills', 'education', 'full', 'markdown']).optional().default('summary'),
-    company: z.string().optional().describe('Optional company name to filter experience (e.g., "Vivun", "Priceline", "Anysphere")'),
+    company: z.string().optional().describe('Optional company name to filter experience (e.g., "Vivun", "Priceline", "Cursor")'),
   }),
   execute: async ({ section, company }) => {
     if (section === 'markdown') {

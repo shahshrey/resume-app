@@ -21,6 +21,7 @@ export function Navbar() {
   const navItems = [
     { href: '#about', label: 'About' },
     { href: '#experience', label: 'Work' },
+    { href: '#education', label: 'Education' },
     { href: '#skills', label: 'Skills' },
     { href: '#talks', label: 'Talks' },
   ];

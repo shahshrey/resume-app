@@ -42,7 +42,7 @@ Environment: Langgraph, Python, fastapi, nextjs, LLMS, RAG, Cursor
 * Leveraged **Langsmith** for **monitoring**, **evaluating** and **optimizing** the agents and prompts.  
 * Heavily influenced the **UI/UX** of the agents based on my findings by doing **rapid proto-typing**. Stay up to date on trends in **LLM architectures**, **agent frameworks**, **evaluation strategies**, and **GenAI standards**.
 
-**Cursor Ambassador 			                     Anysphere	   		                                       Mar 2025 \- Present**
+**Cursor Ambassador 			                     Cursor	   		                                       Mar 2025 \- Present**
 
 * Helping bridge the gap between the AI community and Cursor team  
 * Hosted webinars & talks on Maven  resulting in thousands of individuals learning more about Cursor Community  
