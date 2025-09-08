@@ -38,8 +38,8 @@ const RESUME_DATA: ResumeData = {
   title: "GENERATIVE AI ENGINEER",
   contact: {
     email: "sshreyv@gmail.com",
-    phone: "(647)-675-0790",
-    location: "24 Trout Run, Halifax, NS"
+    phone: "",
+    location: "Halifax, Canada"
   },
   summary: "Senior AI Software Engineer with over 9 years of software development and 2+ years specializing in AI agent development. Experienced in architecting and implementing scalable AI solutions, including multi-agent applications, RAG, and knowledge graph systems. Proficient in leading AI frameworks such as LangChain, LangGraph and MCPs.",
   skills: {

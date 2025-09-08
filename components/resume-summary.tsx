@@ -21,8 +21,8 @@ const SAMPLE_DATA: ResumeSummaryData = {
   title: "GENERATIVE AI ENGINEER",
   contact: {
     email: "sshreyv@gmail.com",
-    phone: "(647)-675-0790",
-    location: "24 Trout Run, Halifax, NS"
+    phone: "",
+    location: "Halifax, Canada"
   },
   summary: "Senior AI Software Engineer with over 9 years of software development and 2+ years specializing in AI agent development. Experienced in architecting and implementing scalable AI solutions, including multi-agent applications, RAG, and knowledge graph systems."
 };
@@ -94,12 +94,14 @@ export function ResumeSummary({
               <span className="text-sm text-gray-300 group-hover:text-amber-100 transition-colors">{resumeData.contact.email}</span>
             </a>
             
-            <div className="group flex items-center gap-3 px-4 py-2.5 bg-gray-800/40 hover:bg-gray-800/60 rounded-xl border border-gray-700 transition-all duration-300">
-              <svg className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span className="text-sm text-gray-300 group-hover:text-amber-100 transition-colors">{resumeData.contact.phone}</span>
-            </div>
+            {resumeData.contact.phone && (
+              <div className="group flex items-center gap-3 px-4 py-2.5 bg-gray-800/40 hover:bg-gray-800/60 rounded-xl border border-gray-700 transition-all duration-300">
+                <svg className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span className="text-sm text-gray-300 group-hover:text-amber-100 transition-colors">{resumeData.contact.phone}</span>
+              </div>
+            )}
             
             <div className="group flex items-center gap-3 px-4 py-2.5 bg-gray-800/40 hover:bg-gray-800/60 rounded-xl border border-gray-700 transition-all duration-300">
               <svg className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

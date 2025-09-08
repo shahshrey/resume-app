@@ -1,5 +1,5 @@
-sshreyv@gmail.com                                                  **SHREY SHAH**                                  24 Trout Run  
-(647)-675-0790				**GENERATIVE AI ENGINEER**                        Halifax, NS  
+sshreyv@gmail.com                                                  **SHREY SHAH**
+				**GENERATIVE AI ENGINEER**                        Halifax, Canada  
 **SUMMARY**                                             
 
 **Senior AI Software Engineer** with over 9 years of **software development** and 2+ years specializing in **AI agent development**. Experienced in architecting and implementing **scalable AI solutions**, including **multi-agent applications**, **RAG**, and **knowledge graph systems**. Proficient in leading AI frameworks such as **LangChain**, **LangGraph** and **MCPs.**

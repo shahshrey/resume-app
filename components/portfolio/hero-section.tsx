@@ -126,9 +126,9 @@ export function HeroSection() {
           >
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-0 portfolio-accent-gradient rounded-3xl blur-3xl opacity-20" />
-              <div className="relative rounded-3xl overflow-hidden border border-gray-800 shadow-2xl">
+              <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border border-gray-800 shadow-2xl bg-transparent">
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-amber-600/10" />
-                <ProfileImage className="w-full h-full object-cover" />
+                <ProfileImage className="w-full h-full object-cover rounded-full" />
               </div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 portfolio-accent-gradient rounded-full blur-2xl opacity-30" />
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-amber-300/20 rounded-full blur-xl" />

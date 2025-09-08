@@ -7,7 +7,6 @@ import {
   CodeBracketIcon,
   DocumentTextIcon,
   EnvelopeIcon,
-  PhoneIcon,
   MapPinIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline';
@@ -35,7 +34,7 @@ export function ResumeFull({
     let inEducation = false;
     
     lines.forEach((line, index) => {
-      if (line.includes('SHREY SHAH') && line.includes('24 Trout Run')) {
+      if (line.includes('SHREY SHAH') && lines[index + 1]?.includes('GENERATIVE AI ENGINEER')) {
         formatted.push(
           <div key="header" className="text-center mb-8">
             <h1 className="text-4xl font-bold portfolio-gradient-text mb-2">
@@ -48,17 +47,13 @@ export function ResumeFull({
                 <span>sshreyv@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <PhoneIcon className="w-4 h-4 text-amber-300" />
-                <span>(647)-675-0790</span>
-              </div>
-              <div className="flex items-center gap-2">
                 <MapPinIcon className="w-4 h-4 text-amber-200" />
-                <span>24 Trout Run, Halifax, NS</span>
+                <span>Halifax, Canada</span>
               </div>
             </div>
           </div>
         );
-      } else if (line.includes('(647)-675-0790') && line.includes('GENERATIVE AI ENGINEER')) {
+      } else if (line.includes('**GENERATIVE AI ENGINEER**')) {
         return;
       } else if (line.includes('**SUMMARY**')) {
         sectionTitle = 'SUMMARY';

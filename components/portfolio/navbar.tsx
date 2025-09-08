@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Menu, X, Sparkles } from 'lucide-react';
+import { MessageSquare, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -38,12 +38,6 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <Link href="#hero" className="group flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-amber-500/10 group-hover:bg-amber-500/20 transition-colors duration-300">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-            </div>
-            <span className="text-lg font-semibold text-gray-100 tracking-tight">SS</span>
-          </Link>
           
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item, index) => (

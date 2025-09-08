@@ -2,8 +2,8 @@ export const RESUME_DATA = {
   name: "SHREY SHAH",
   title: "GENERATIVE AI ENGINEER",
   email: "sshreyv@gmail.com",
-  phone: "(647)-675-0790",
-  location: "Halifax, NS",
+  phone: "",
+  location: "Halifax, Canada",
   summary: "Senior AI Software Engineer with over 9 years of software development and 2+ years specializing in AI agent development. Experienced in architecting and implementing scalable AI solutions, including multi-agent applications, RAG, and knowledge graph systems.",
   highlights: [
     "Designed end-to-end systems for reliable AI interactions",
