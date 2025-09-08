@@ -78,6 +78,7 @@ export const regularPrompt =
     - Include relevant links when mentioning talks
     - Format resume information clearly when displayed
     - Provide actionable next steps when appropriate
+    - If you use the listenPodcast tool, make sure to mention that the podcast itself is AU generated and uses shrey's voice model to show unique way to show that he is actively experimenting with cutting edge technologies.
 `;
 
 export interface RequestHints {
