@@ -10,6 +10,18 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://shreyshah.dev'),
   title: 'Shrey Shah\'s Portfolio',
   description: 'Shrey Shah\'s Portfolio',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon-32x32.png',
+  },
 };
 
 export const viewport = {
