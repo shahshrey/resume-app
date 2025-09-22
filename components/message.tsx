@@ -187,18 +187,11 @@ const PurePreviewMessage = ({
               if (type === 'tool-getResume') {
                 const { toolCallId, state } = part;
 
-                if ('input' in part) {
-                  return (
-                    <div key={toolCallId} className="skeleton">
-                      <ResumeSummary />
-                    </div>
-                  );
-                }
-
                 if (state === 'output-available') {
                   const { output } = part;
                   const outputAny = output as any;
                   
+                  // Check for explicit type field (markdown or error)
                   if (outputAny && typeof outputAny === 'object' && 'type' in outputAny) {
                     if (outputAny.type === 'markdown' && 'content' in outputAny) {
                       return (
@@ -217,7 +210,75 @@ const PurePreviewMessage = ({
                     }
                   }
                   
-                  if (output && typeof output === 'object' && 'experience' in output && !('summary' in output) && !('type' in output)) {
+                  // Check for full resume (has all main fields)
+                  if (output && typeof output === 'object' && 
+                      'name' in output && 'title' in output && 
+                      'contact' in output && 'summary' in output && 
+                      'skills' in output && 'experience' in output && 
+                      'education' in output) {
+                    const full = output as any;
+
+                    const joinArray = (arr: unknown): string => {
+                      if (Array.isArray(arr)) return arr.join(', ');
+                      return '';
+                    };
+
+                    const headerLine1 = `${full?.contact?.email ?? ''}                                                  **${full?.name ?? ''}**`;
+                    const headerLine2 = `\t\t\t\t**${full?.title ?? ''}**                        ${full?.contact?.location ?? ''}  `;
+
+                    const summaryMd = `**SUMMARY**\n\n${full?.summary ?? ''}`;
+
+                    const skillsMd = [
+                      '**TECHNICAL SKILLS:**',
+                      '',
+                      `* **Programming Languages:** ${joinArray(full?.skills?.programming)}`,
+                      '',
+                      `* **Knowledge of Dev-ops tools**: ${joinArray(full?.skills?.devOps)}`,
+                      `* **Database Systems:** ${joinArray(full?.skills?.databases)}`,
+                      '',
+                      `* **IDES**: ${joinArray(full?.skills?.ides)}`,
+                      '',
+                      `* **GenAI:**  ${joinArray(full?.skills?.genAI)}`,
+                    ].join('\n');
+
+                    const experienceMd = [
+                      '**WORK EXPERIENCE**',
+                      '',
+                      ...((full?.experience ?? []).flatMap((e: any) => [
+                        `**${e?.title ?? ''}\t\t\t ${e?.company ?? ''}\t\t\t ${e?.duration ?? ''}**  `,
+                        e?.environment ? `Environment: ${e.environment}` : '',
+                        '',
+                        ...((e?.highlights ?? []).map((h: string) => `* ${h}`)),
+                        '',
+                      ])),
+                    ].join('\n');
+
+                    const educationMd = [
+                      '**EDUCATION**',
+                      '',
+                      ...((full?.education ?? []).map((ed: any) => `**${ed?.degree ?? ''}                                ${ed?.institution ?? ''}                                                  ${ed?.duration ?? ''}**`)),
+                    ].join('\n');
+
+                    const md = [
+                      headerLine1,
+                      headerLine2,
+                      summaryMd,
+                      skillsMd,
+                      experienceMd,
+                      educationMd,
+                    ].join('\n\n');
+
+                    return (
+                      <div key={toolCallId}>
+                        <ResumeFull resumeContent={md} />
+                      </div>
+                    );
+                  }
+                  
+                  // Check for experience section only
+                  if (output && typeof output === 'object' && 
+                      'experience' in output && !('skills' in output) && 
+                      !('education' in output)) {
                     return (
                       <div key={toolCallId}>
                         <ResumeExperience experienceData={output as any} />
@@ -225,7 +286,10 @@ const PurePreviewMessage = ({
                     );
                   }
                   
-                  if (output && typeof output === 'object' && 'skills' in output && !('summary' in output) && !('type' in output)) {
+                  // Check for skills section only
+                  if (output && typeof output === 'object' && 
+                      'skills' in output && !('experience' in output) && 
+                      !('education' in output)) {
                     return (
                       <div key={toolCallId}>
                         <ResumeSkills skillsData={output as any} />
@@ -233,7 +297,10 @@ const PurePreviewMessage = ({
                     );
                   }
                   
-                  if (output && typeof output === 'object' && 'education' in output && !('summary' in output) && !('type' in output)) {
+                  // Check for education section only
+                  if (output && typeof output === 'object' && 
+                      'education' in output && !('experience' in output) && 
+                      !('skills' in output)) {
                     return (
                       <div key={toolCallId}>
                         <ResumeEducation educationData={output as any} />
@@ -241,7 +308,10 @@ const PurePreviewMessage = ({
                     );
                   }
                   
-                  if (output && typeof output === 'object' && !('type' in output)) {
+                  // Check for summary section (has name, title, contact, summary but not other sections)
+                  if (output && typeof output === 'object' && 
+                      'summary' in output && !('experience' in output) && 
+                      !('skills' in output) && !('education' in output)) {
                     return (
                       <div key={toolCallId}>
                         <ResumeSummary resumeData={output as any} />
@@ -249,8 +319,31 @@ const PurePreviewMessage = ({
                     );
                   }
                   
-                  return null;
+                  // Default fallback
+                  if (output && typeof output === 'object') {
+                    return (
+                      <div key={toolCallId}>
+                        <ResumeSummary resumeData={output as any} />
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <div key={toolCallId} className="text-red-500 p-2 border rounded">
+                      Error: No valid resume data received from tool
+                    </div>
+                  );
                 }
+                
+                if ('input' in part) {
+                  return (
+                    <div key={toolCallId} className="skeleton">
+                      <ResumeSummary />
+                    </div>
+                  );
+                }
+                
+                return null;
               }
 
               if (type === 'tool-listenPodcast') {

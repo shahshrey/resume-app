@@ -123,17 +123,6 @@ export function ExperienceSection() {
                         <Calendar className="w-4 h-4" />
                         <span className="text-sm">{exp.period}</span>
                       </div>
-                      
-                      {index === 0 && (
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 text-sm font-medium self-start"
-                        >
-                          <span>View Projects</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </motion.button>
-                      )}
                     </div>
                   </div>
                   

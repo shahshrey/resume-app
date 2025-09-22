@@ -112,7 +112,7 @@ export const getMarkdownResume = () => {
 export const getResume = tool({
   description: 'Get Shrey Shah resume information. Use "markdown" for full resume display, or specific sections like "summary", "experience", "skills", "education" for structured components. For experience, you can optionally filter by company name.',
   inputSchema: z.object({
-    section: z.enum(['summary', 'experience', 'skills', 'education', 'full', 'markdown']).optional().default('summary'),
+    section: z.enum(['summary', 'experience', 'skills', 'education', 'full', 'markdown']).optional().default('markdown'),
     company: z.string().optional().describe('Optional company name to filter experience (e.g., "Vivun", "Priceline", "Cursor")'),
   }),
   execute: async ({ section, company }) => {

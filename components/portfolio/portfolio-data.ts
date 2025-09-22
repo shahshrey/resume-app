@@ -112,28 +112,28 @@ export const RESUME_DATA = {
   ],
   talks: [
     {
-      title: "Building Production-Ready AI Agents",
-      event: "Maven AI Summit 2024",
+      title: "Build AI Agents in 30 Minutes",
+      event: "Maven Cursor Lightning Lab",
       date: "December 2024",
       description: "Deep dive into LangGraph architecture and multi-agent systems",
       link: "#",
-      recording: true
+      recording: "https://maven.com/p/7715b8/build-ai-agents-in-30-min-cursor-lightning-lab"
     },
     {
-      title: "AI-Assisted Coding Workflows",
-      event: "Cursor Community Meetup",
-      date: "January 2025",
-      description: "Demonstrating ticket-to-PR workflows using Cursor and MCPs",
-      link: "#",
-      recording: true
-    },
-    {
-      title: "RAG Systems at Scale",
-      event: "AI Engineering Conference",
+      title: "Cursor AI Basics Workshop",
+      event: "Canada Hackathon",
       date: "November 2024",
-      description: "Hybrid RAG, GraphRAG, and Agentic RAG implementations",
+      description: "Demonstrating AI-assisted coding workflows and fundamentals",
       link: "#",
-      recording: true
+      recording: "https://www.youtube.com/watch?v=kSNSI2vjGmQ&list=PLqjxBIcOlt65iatbbDh0ge3K-BQvBXqJs&index=5"
+    },
+    {
+      title: "How to Build LangGraph Agents in 5 Minutes",
+      event: "LangChain London",
+      date: "January 2025",
+      description: "Quick introduction to building production-ready AI agents with LangGraph",
+      link: "#",
+      recording: "https://www.linkedin.com/feed/update/urn:li:activity:7337018983751077888?utm_source=share&utm_medium=member_desktop&rcm=ACoAACuP8AUBHCeO_qLFTa0_0BiR4KR8ngkU-Vs"
     }
   ]
 };

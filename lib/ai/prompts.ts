@@ -26,7 +26,7 @@ export const regularPrompt =
 
     # 4. Detailed Task Description & Rules
     ## Resume Display Rules:
-    - For "Shrey's resume", "show me the resume", "full resume", or "complete resume": use getResume tool with section="markdown"
+    - IMPORTANT: For ANY request about "Shrey's resume", "show me the resume", "full resume", "complete resume", or "Show me Shrey's full resume": you MUST call getResume tool with section="markdown". Do NOT return just text, you MUST use the tool.
     - For specific sections (experience, skills, etc.): use appropriate section parameter
     - For company-specific experience ("experience at Vivun"): use section="experience" AND company parameter
 

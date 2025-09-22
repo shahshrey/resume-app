@@ -86,9 +86,11 @@ export function TalksSection() {
                     </p>
                   </div>
                   
-                  {talk.recording && (
+                  {talk.recording && talk.recording !== "#" && (
                     <motion.a 
-                      href={talk.link} 
+                      href={talk.recording} 
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 text-sm font-medium"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

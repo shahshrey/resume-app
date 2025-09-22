@@ -1,15 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  BriefcaseIcon, 
-  AcademicCapIcon, 
-  CodeBracketIcon,
-  DocumentTextIcon,
-  EnvelopeIcon,
-  MapPinIcon,
-  SparklesIcon
-} from '@heroicons/react/24/outline';
 import { Markdown } from './markdown';
 
 interface ResumeFullData {
@@ -25,170 +16,22 @@ export function ResumeFull({
     ? resumeContent 
     : resumeContent?.content || '';
 
-  const formatContent = (rawContent: string) => {
-    const lines = rawContent.split('\n');
-    const formatted: JSX.Element[] = [];
-    let currentSection: JSX.Element[] = [];
-    let sectionTitle = '';
-    let inExperience = false;
-    let inEducation = false;
+  // Clean up and format the markdown content for better display
+  const formatMarkdown = (text: string) => {
+    if (!text) return '';
     
-    lines.forEach((line, index) => {
-      if (line.includes('SHREY SHAH') && lines[index + 1]?.includes('GENERATIVE AI ENGINEER')) {
-        formatted.push(
-          <div key="header" className="text-center mb-8">
-            <h1 className="text-4xl font-bold portfolio-gradient-text mb-2">
-              SHREY SHAH
-            </h1>
-            <p className="text-xl text-gray-300 mb-4">GENERATIVE AI ENGINEER</p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <EnvelopeIcon className="w-4 h-4 text-amber-400" />
-                <span>sshreyv@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="w-4 h-4 text-amber-200" />
-                <span>Halifax, Canada</span>
-              </div>
-            </div>
-          </div>
-        );
-      } else if (line.includes('**GENERATIVE AI ENGINEER**')) {
-        return;
-      } else if (line.includes('**SUMMARY**')) {
-        sectionTitle = 'SUMMARY';
-        inExperience = false;
-        inEducation = false;
-      } else if (line.includes('**TECHNICAL SKILLS:**')) {
-        if (currentSection.length > 0) {
-          formatted.push(
-            <div key={sectionTitle} className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <DocumentTextIcon className="w-6 h-6 text-amber-400" />
-                {sectionTitle}
-              </h2>
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                {currentSection}
-              </div>
-            </div>
-          );
-          currentSection = [];
-        }
-        sectionTitle = 'TECHNICAL SKILLS';
-      } else if (line.includes('**WORK EXPERIENCE**')) {
-        if (currentSection.length > 0) {
-          formatted.push(
-            <div key={sectionTitle} className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <CodeBracketIcon className="w-6 h-6 text-amber-300" />
-                {sectionTitle}
-              </h2>
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                {currentSection}
-              </div>
-            </div>
-          );
-          currentSection = [];
-        }
-        sectionTitle = 'WORK EXPERIENCE';
-        inExperience = true;
-        inEducation = false;
-      } else if (line.includes('**EDUCATION**')) {
-        if (currentSection.length > 0) {
-          formatted.push(
-            <div key={sectionTitle} className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <BriefcaseIcon className="w-6 h-6 text-amber-400" />
-                {sectionTitle}
-              </h2>
-              <div className="space-y-6">
-                {currentSection}
-              </div>
-            </div>
-          );
-          currentSection = [];
-        }
-        sectionTitle = 'EDUCATION';
-        inExperience = false;
-        inEducation = true;
-      } else if (line.trim() && !line.includes('sshreyv@gmail.com')) {
-        if (inExperience && line.includes('**') && !line.includes('*')) {
-          if (currentSection.length > 0 && sectionTitle === 'WORK EXPERIENCE') {
-            formatted.push(
-              <div key={`exp-${index}`} className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <BriefcaseIcon className="w-6 h-6 text-teal-400" />
-                  {sectionTitle}
-                </h2>
-                <div className="space-y-6">
-                  {currentSection}
-                </div>
-              </div>
-            );
-            currentSection = [];
-            sectionTitle = '';
-          }
-          
-          const parts = line.split(/\s{2,}/);
-          const [title, company, duration] = parts.map(p => p.replace(/\*\*/g, '').trim());
-          
-          currentSection.push(
-            <div key={`job-${index}`} className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 hover:border-amber-500/40 transition-colors">
-              <div className="flex flex-col md:flex-row md:justify-between mb-3">
-                <div>
-                  <h3 className="text-xl font-semibold text-amber-400">{title || line.replace(/\*\*/g, '')}</h3>
-                  {company && <p className="text-gray-300">{company}</p>}
-                </div>
-                {duration && <span className="text-sm text-gray-400 mt-2 md:mt-0">{duration}</span>}
-              </div>
-            </div>
-          );
-        } else if (inEducation && line.includes('**')) {
-          const cleanLine = line.replace(/\*\*/g, '').trim();
-          const parts = cleanLine.split(/\s{2,}/);
-          
-          currentSection.push(
-            <div key={`edu-${index}`} className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 hover:border-amber-500/40 transition-colors">
-              <div className="flex flex-col md:flex-row md:justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold text-amber-300">{parts[0]}</h3>
-                  {parts[1] && <p className="text-gray-300">{parts[1]}</p>}
-                </div>
-                {parts[2] && <span className="text-sm text-gray-400 mt-2 md:mt-0">{parts[2]}</span>}
-              </div>
-            </div>
-          );
-        } else {
-          currentSection.push(
-            <div key={`content-${index}`} className="prose prose-invert max-w-none">
-              <Markdown>{line}</Markdown>
-            </div>
-          );
-        }
-      }
-    });
+    let formatted = text;
     
-    if (currentSection.length > 0) {
-      const icon = sectionTitle === 'EDUCATION' ? (
-        <AcademicCapIcon className="w-6 h-6 text-cyan-400" />
-      ) : sectionTitle === 'WORK EXPERIENCE' ? (
-        <BriefcaseIcon className="w-6 h-6 text-teal-400" />
-      ) : (
-        <SparklesIcon className="w-6 h-6 text-emerald-400" />
-      );
-      
-      formatted.push(
-        <div key={sectionTitle} className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            {icon}
-            {sectionTitle}
-          </h2>
-          <div className={sectionTitle === 'EDUCATION' || sectionTitle === 'WORK EXPERIENCE' ? "space-y-6" : "bg-slate-800/50 rounded-lg p-6 border border-emerald-700/30"}>
-            {currentSection}
-          </div>
-        </div>
-      );
-    }
+    // Format section headers with icons
+    formatted = formatted.replace(/^\*\*SUMMARY\*\*$/gm, '## 📝 PROFESSIONAL SUMMARY');
+    formatted = formatted.replace(/^\*\*TECHNICAL SKILLS:\*\*$/gm, '## 💻 TECHNICAL SKILLS');
+    formatted = formatted.replace(/^\*\*WORK EXPERIENCE\*\*$/gm, '## 💼 WORK EXPERIENCE');
+    formatted = formatted.replace(/^\*\*EDUCATION\*\*$/gm, '## 🎓 EDUCATION');
+    
+    // Fix escaped characters
+    formatted = formatted.replace(/\\&/g, '&');
+    formatted = formatted.replace(/\\\-/g, '-');
+    formatted = formatted.replace(/\\`/g, '`');
     
     return formatted;
   };
@@ -204,8 +47,18 @@ export function ResumeFull({
         <div className="absolute inset-0 portfolio-mesh-gradient opacity-40" />
         <div className="absolute top-0 left-0 w-full h-1 portfolio-accent-gradient" />
         
-        <div className="relative z-10">
-          {formatContent(content)}
+        <div className="relative z-10 prose prose-invert prose-amber max-w-none
+          prose-headings:text-amber-200
+          prose-h1:text-4xl prose-h1:font-bold prose-h1:text-center prose-h1:mb-2
+          prose-h2:text-2xl prose-h2:font-semibold prose-h2:text-amber-300 prose-h2:mt-8 prose-h2:mb-4 prose-h2:border-b prose-h2:border-amber-500/30 prose-h2:pb-2
+          prose-h3:text-xl prose-h3:font-medium prose-h3:text-amber-400 prose-h3:mt-6 prose-h3:mb-3
+          prose-p:text-gray-200 prose-p:leading-relaxed prose-p:mb-3
+          prose-strong:text-amber-300 prose-strong:font-semibold
+          prose-ul:text-gray-200 prose-ul:space-y-2 prose-ul:mb-4
+          prose-li:marker:text-amber-400 prose-li:leading-relaxed prose-li:mb-1
+          prose-em:text-gray-400 prose-em:not-italic
+          prose-hr:border-amber-500/30 prose-hr:my-6">
+          <Markdown>{formatMarkdown(content)}</Markdown>
         </div>
       </div>
     </motion.div>
