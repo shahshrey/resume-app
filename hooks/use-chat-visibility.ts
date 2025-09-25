@@ -7,7 +7,7 @@ import { updateChatVisibility } from '@/app/chat/actions';
 import {
   getChatHistoryPaginationKey,
   type ChatHistory,
-} from '@/components/sidebar-history';
+} from '@/lib/utils';
 
 export function useChatVisibility({ chatId }: { chatId: string }) {
   const { mutate, cache } = useSWRConfig();

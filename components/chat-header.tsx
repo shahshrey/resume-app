@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'usehooks-ts';
 
 import { ModelSelector } from '@/components/model-selector';
-import { SidebarToggle } from '@/components/sidebar-toggle';
 import { Button } from '@/components/ui/button';
 import { PlusIcon, } from './icons';
 import { useSidebar } from './ui/sidebar';
@@ -30,8 +29,6 @@ function PureChatHeader({
 
   return (
     <header className="flex sticky top-0 bg-background/80 backdrop-blur-md border-b border-border py-3 items-center px-4 gap-3">
-      <SidebarToggle />
-
       {(!open || windowWidth < 768) && (
         <Tooltip>
           <TooltipTrigger asChild>

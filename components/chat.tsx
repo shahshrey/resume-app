@@ -13,7 +13,7 @@ import { Messages } from './messages';
 
 import { useArtifactSelector } from '@/hooks/use-artifact';
 import { unstable_serialize } from 'swr/infinite';
-import { getChatHistoryPaginationKey } from './sidebar-history';
+import { getChatHistoryPaginationKey } from '@/lib/utils';
 import { toast } from './toast';
 
 import { useSearchParams } from 'next/navigation';
@@ -115,7 +115,7 @@ export function Chat({
           isReadonly={isReadonly}
         />
 
-        <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+        <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full">
           <Messages
             chatId={id}
             status={status}
