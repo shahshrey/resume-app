@@ -36,7 +36,7 @@ export function ModelSelector({
     () =>
       availableChatModels.find(
         (chatModel) => chatModel.id === optimisticModelId,
-      ),
+      ) || availableChatModels[0], // Fallback to first available model
     [optimisticModelId, availableChatModels],
   );
 
