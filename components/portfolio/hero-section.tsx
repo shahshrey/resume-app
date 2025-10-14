@@ -53,8 +53,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Architecting scalable AI systems with {RESUME_DATA.experience[0].period.split('–')[0].split(' ')[1]} years of experience. 
-              Specializing in multi-agent workflows, RAG solutions, and production-grade LLM applications.
+              Architecting scalable AI systems specializing in multi-agent and multi-modal workflows, RAG solutions, and production-grade LLM applications.
             </motion.p>
             
             <motion.div 
